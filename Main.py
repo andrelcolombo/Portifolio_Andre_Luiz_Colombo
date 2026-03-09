@@ -40,6 +40,7 @@ def carregar_repos():
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 caminho_imagem = os.path.join(BASE_DIR, "imagens", "minha_foto.jpeg")
+caminho_logo_github = os.path.join(BASE_DIR, "imagens", "logotipo-do-github.png")
 
 # =========================
 # FUNÇÃO PARA CONVERTER IMAGEM
@@ -50,6 +51,7 @@ def carregar_imagem_base64(caminho):
         return base64.b64encode(img_file.read()).decode()
 
 img_base64 = carregar_imagem_base64(caminho_imagem)
+logo_github_base64 = carregar_imagem_base64(caminho_logo_github)
 
 # =========================
 # CSS PARA FOTO REDONDA NO SIDEBAR
@@ -225,6 +227,8 @@ if menu == "🏠 Sobre mim":
     atuando na construção de soluções escaláveis, modernas e orientadas a dados, 
     com forte impacto no negócio e suporte à tomada de decisão estratégica.
     """)
+
+    st.divider()
     # =========================
     # FORMAÇÃO
     # =========================
@@ -241,6 +245,39 @@ if menu == "🏠 Sobre mim":
     🎓 Formação em Análise de Dados  
     Data Science Academy  
     """)
+
+    st.divider()
+
+    # =========================
+    # QUEM É O ANDRÉ (LADO PESSOAL)
+    # =========================
+
+    st.header("👤 Além dos Pipelines: Quem é o André?")
+
+    col_text, col_hobbies = st.columns([2, 1])
+
+    with col_text:
+        st.write("""
+        Se você me perguntar por que escolhi a Engenharia, a resposta não começa com números, mas com **ronco de motores**. 🏎️ 
+        
+        Sou um apaixonado por carros desde cedo, o que me levou a cursar Engenharia de Produção para entender como grandes máquinas e processos complexos ganham vida. Essa curiosidade mecânica acabou migrando para o mundo digital: hoje, em vez de motores, eu projeto **arquiteturas de dados**.
+        
+        Fora do trabalho, você provavelmente vai me encontrar:
+        - **Explorando novos setups:** Sou fascinado por eletrônicos e hardware. Se tem uma tecnologia nova saindo, eu quero entender como funciona.
+        - **No mundo dos Games:** Onde exercito minha estratégia e reflexos (e claro, admiro o trabalho de engenharia por trás dos gráficos).
+        - **Me atualizando:** O mundo tech não para, e minha sede por aprender coisas novas é o que me mantém em movimento.
+        """)
+
+    with col_hobbies:
+        # Um pequeno card visual com ícones das suas paixões
+        with st.container(border=True):
+            st.markdown("### My Gear & Passions")
+            st.write("🏎️ Motorsports")
+            st.write("🎮 Gaming Culture")
+            st.write("🔌 Gadgets & Tech")
+            st.write("🚀 Continuous Learning")
+
+    st.divider()
 
 # =========================
 # INFORMAÇÕES PROFISSIONAIS
@@ -322,9 +359,34 @@ elif menu == "ℹ️ Informações":
 
 elif menu == "📊 Projetos":
 
-    st.title("Projetos 🚀")
+    # st.title("Projetos 🚀")
 
-    st.subheader("📂 Todos os Projetos do GitHub")
+    # Substitua: st.title("Projetos 🚀") por:
+
+    st.markdown(
+        f"""
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <img src="data:image/png;base64,{logo_github_base64}" width="50px">
+            <h1 style="margin: 0;">Projetos</h1>
+        </div>
+        <br>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # --- NOVO BLOCO: Link para o Perfil ---
+    col_tit, col_btn = st.columns([2, 1])
+    
+    with col_tit:
+        st.subheader("📂 Repositórios em Destaque")
+        st.write("Abaixo estão os projetos que desenvolvi. Eles são carregados em tempo real do meu GitHub.")
+
+    with col_btn:
+        st.write("") # Espaçador para alinhar com o título
+        st.link_button("🌐 Ver Perfil Completo no GitHub", f"https://github.com/{GITHUB_USERNAME}", type="secondary")
+    
+    st.divider()
+    # --------------------------------------
 
     # Lista de repositórios que você NÃO quer mostrar
     repos_excluidos = [
@@ -335,6 +397,8 @@ elif menu == "📊 Projetos":
         "desafio-merge",
         "sistema-de-cadastro"
     ]
+    
+    # ... (restante do seu código de carregamento e loop)
 
     # Carrega os repositórios do GitHub
     repos = carregar_repos()
@@ -368,7 +432,7 @@ elif menu == "📊 Projetos":
         url = repo["html_url"]
         linguagem = repo["language"]
 
-        st.markdown(f"### 🔹 {nome}")
+        st.markdown(f"### 🌐 {nome}")
 
         st.write(descricao)
 
@@ -385,18 +449,37 @@ elif menu == "📊 Projetos":
 
 elif menu == "📞 Contato":
 
-    st.title("Contato 📬")
+    st.title("Contato 📞")
+    st.write("Escolha a melhor forma de entrar em contato comigo:")
 
-    st.markdown("""
-    - 📧 andre-luiz-colombo@outlook.com  
-    - 🐙 https://github.com/andrelcolombo  
-    - 🔗 https://www.linkedin.com/in/andrelcolombo/  
-    - 📱 (11) 96917-7343  
-    - 🏢 São Paulo, SP        
-    """)
+    # Criando colunas para os botões de ação
+    col1, col2, col3 = st.columns(3)
 
-    nome = st.text_input("Nome")
-    msg = st.text_area("Mensagem")
+    with col1:
+        st.subheader("E-mail")
+        st.write("Resposta em até 24h")
+        # Botão que abre o app de e-mail do usuário
+        st.link_button("📧 Enviar E-mail", "mailto:andre-luiz-colombo@outlook.com")
 
-    if st.button("Enviar"):
-        st.success(f"Valeu, {nome}! 🚀")
+    with col2:
+        st.subheader("LinkedIn")
+        st.write("Rede profissional e chat")
+        st.link_button("🔗 Ver Perfil", "https://www.linkedin.com/in/andr%C3%A9-luiz-colombo-729755111/")
+
+    with col3:
+        st.subheader("GitHub")
+        st.write("Meus códigos e projetos")
+        st.link_button("🐙 Acessar Repos", "https://github.com/andrelcolombo")
+
+    st.divider()
+
+    # Informações Adicionais em um card visual
+    with st.expander("📍 Outras Informações", expanded=True):
+        st.markdown(f"""
+        - **Localização:** São Paulo, SP
+        - **Telefone/WhatsApp: (11)96917-7343**  [Clique para chamar](https://wa.me/5511969177343)
+        - **E-mail:** andre-luiz-colombo@outlook.com
+        - **LinkedIn:** [linkedin.com/in/andrelcolombo](https://www.linkedin.com/in/andr%C3%A9-luiz-colombo-729755111/)
+        - **GitHub:** [github.com/andrelcolombo](https://github.com/andrelcolombo)
+        - **Horário de Disponibilidade:** Segunda a Sexta, das 09:00 às 18:00
+        """)
