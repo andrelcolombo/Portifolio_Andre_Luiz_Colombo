@@ -12,7 +12,9 @@ import os
 
 st.set_page_config(
     page_title="André Colombo | Data Engineer",
-    layout="wide"
+    page_icon="⚙️",
+    layout="wide",
+    initial_sidebar_state="expanded"
 )
 
 # =========================
