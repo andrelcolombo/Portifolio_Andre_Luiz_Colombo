@@ -435,63 +435,51 @@ elif menu == "📊 Projetos":
         st.link_button("🌐 Ver Perfil Completo no GitHub", f"https://github.com/{GITHUB_USERNAME}", type="secondary")
     
     st.divider()
-    # --------------------------------------
+   
 
-    # Lista de repositórios que você NÃO quer mostrar
-    repos_excluidos = [
-        "aulagithub",
-        "aulateste",
-        "aula_csharp",
-        "desafio-git",
-        "desafio-merge",
-        "sistema-de-cadastro"
-    ]
+    repos_excluidos = ["aulagithub", "aulateste", "aula_csharp", "desafio-git", "desafio-merge", "sistema-de-cadastro"]
     
-    # ... (restante do seu código de carregamento e loop)
-
-    # Carrega os repositórios do GitHub
     repos = carregar_repos()
 
-    # Ordena por relevância (stars)
-    repos = sorted(repos, key=lambda x: x['stargazers_count'], reverse=True)
+    if repos:
+        # Filtragem e Limpeza
+        repos_filtrados = [
+            repo for repo in repos 
+            if repo["name"].lower() not in repos_excluidos 
+            and not repo["fork"] 
+            and repo["description"] is not None
+        ]
 
-    # Loop nos repositórios
-    for repo in repos:
+        # Ordenar pelos mais recentes ou com mais estrelas
+        repos_filtrados = sorted(repos_filtrados, key=lambda x: x['stargazers_count'], reverse=True)
 
-        nome_repo = repo["name"].lower()  # normaliza para evitar erro
-
-        # ❌ Ignora os repositórios que você não quer
-        if nome_repo in repos_excluidos:
-            continue
-
-        # ❌ Ignora forks
-        if repo["fork"]:
-            continue
-
-        # ❌ Ignora projetos sem descrição
-        if repo["description"] is None:
-            continue
-
-        # =========================
-        # EXIBE PROJETO
-        # =========================
-
-        nome = repo["name"]
-        descricao = repo["description"]
-        url = repo["html_url"]
-        linguagem = repo["language"]
-
-        st.markdown(f"### 🌐 {nome}")
-
-        st.write(descricao)
-
-        # Linguagem (importante)
-        if linguagem:
-            st.write(f"🛠️ {linguagem}")
-
-        st.markdown(f"[🔗 Ver repositório]({url})")
-
-        st.divider()
+        # --- EXIBIÇÃO EM GRID (2 colunas) ---
+        for i in range(0, len(repos_filtrados), 2):
+            cols = st.columns(2)
+            
+            for j in range(2):
+                if i + j < len(repos_filtrados):
+                    repo = repos_filtrados[i+j]
+                    
+                    with cols[j]:
+                        # Container estilizado para cada projeto
+                        with st.container(border=True):
+                            st.markdown(f"### 📁 {repo['name'].replace('-', ' ').title()}")
+                            
+                            # Badge de Linguagem com cor
+                            lang = repo["language"]
+                            if lang:
+                                color = "#FF4B4B" if lang == "Python" else "#0083B0"
+                                st.markdown(f"<span style='background-color:{color}; padding:2px 8px; border-radius:10px; color:white; font-size:12px;'>{lang}</span>", unsafe_allow_html=True)
+                            
+                            st.write(f"_{repo['description']}_")
+                            
+                            # Métricas do Repo
+                            st.caption(f"⭐ {repo['stargazers_count']} | 🍴 {repo['forks_count']} | 📅 Atualizado em: {repo['updated_at'][:10]}")
+                            
+                            st.link_button("🌐 Acessar Repositório", repo["html_url"], use_container_width=True)
+    else:
+        st.warning("Não foi possível carregar os projetos. Verifique sua conexão ou limite da API.")
 # =========================
 # CONTATO
 # =========================
@@ -518,7 +506,7 @@ elif menu == "📞 Contato":
     with col3:
         st.subheader("GitHub")
         st.write("Meus códigos e projetos")
-        st.link_button("🐙 Acessar Repos", "https://github.com/andrelcolombo")
+        st.link_button("🌐 Acessar Repos", "https://github.com/andrelcolombo")
 
     st.divider()
 
