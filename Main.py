@@ -27,15 +27,26 @@ GITHUB_USERNAME = "andrelcolombo"  # Seu user real
 # FUNÇÃO API GITHUB
 # =========================
 
+@st.cache_data(ttl=3600)
 def carregar_repos():
     url = f"https://api.github.com/users/{GITHUB_USERNAME}/repos"
-    response = requests.get(url)
 
-    if response.status_code == 200:
-        return response.json()
-    else:
+    token = st.secrets.get("GITHUB_TOKEN")
+    
+    headers = {
+        "Authorization": f"token {token}",
+        "User-Agent": GITHUB_USERNAME  # Adicionado para evitar bloqueios extras
+    } if token else {"User-Agent": GITHUB_USERNAME}
+
+    try:
+        # Passamos os headers com o token aqui
+        response = requests.get(url, headers=headers, timeout=10)
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return [] # Retorna vazio se der erro (ativando seu st.warning)
+    except:
         return []
-
 # =========================
 # CAMINHO DA IMAGEM
 # =========================
