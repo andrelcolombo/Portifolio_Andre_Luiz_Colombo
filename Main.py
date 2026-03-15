@@ -11,7 +11,7 @@ import os
 # =========================
 
 st.set_page_config(
-    page_title="André Colombo | Data Engineer",
+    page_title="Portfólio - André Luiz Colombo",
     page_icon="⚙️",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -246,6 +246,9 @@ if menu == "🏠 Sobre mim":
 
     🎓 Formação em Análise de Dados  
     Data Science Academy  
+             
+    🎓 Formação em Ciência de Dados  
+    Data Science Academy  
     """)
 
     st.divider()
@@ -286,74 +289,118 @@ if menu == "🏠 Sobre mim":
 # =========================
 
 elif menu == "ℹ️ Informações":
-
     st.title("📚 Informações Profissionais")
 
     # =========================
     # FORMAÇÃO ACADÊMICA
     # =========================
-
     st.header("🎓 Formação Acadêmica")
-
-    st.write("""
-    🎓 Bacharelado em Engenharia de Produção  
-    Universidade São Judas Tadeu  
-
-    🎓 MBA em Data Science & Advanced Analytics  
-    Impacta Tecnologia  
-    """)
-
-    st.divider()
-
-    # =========================
-    # CERTIFICAÇÕES (FORTES)
-    # =========================
-
-    st.header("🏅 Certificações Relevantes")
-
-    st.write("""
-    - Databricks Get Started Days (Data Engineering + SQL Analytics)  
-    - Build Data Pipelines (Lakeflow / Data Engineering)  
-    - Business Analytics & Machine Learning  
-    - Formação Analista de Dados  
-    """)
+    
+    with st.expander("🎓 Graduação", expanded=True):
+        st.markdown("""
+        - **Bacharelado em Engenharia de Produção** - *Universidade São Judas Tadeu*
+        - **MBA em Data Science & Advanced Analytics** - *Impacta Tecnologia*
+        """)
+    
 
     st.divider()
 
     # =========================
-    # CURSOS (AGRUPADOS)
+    # CERTIFICAÇÕES (ORGANIZADAS POR EXPANDERS)
     # =========================
+    st.header("🏅 Especializações e Certificações")
+    st.caption("Clique nos grupos para expandir ou recolher as informações.")
 
-    st.header("📚 Cursos Complementares")
+    with st.expander("🏆 Formações Principais (Master)", expanded=True):
+        st.markdown("""
+        - **Formação Cientista de Dados 4.0** - *Data Science Academy*
+        - **Formação Analista de Dados 4.0** - *Data Science Academy*
+        """)
 
-    st.write("""
-    Possuo diversas formações complementares voltadas para engenharia e análise de dados, incluindo:
+    with st.expander("⚙️ Engenharia de Dados, Cloud & Automação", expanded=True):
+        st.markdown("""
+        - **IA Generativa e Agentes de IA Para Fluxos de Automação com Langflow e n8n**
+        - **SQL Server Integration Services (SSIS) - ETL Avançado** 
+        - **Build Data Pipelines** (Lakeflow / Data Engineering)
+        - **Pipelines de Dados com Google BigQuery**
+        - **Fundamentos de Engenharia de Dados**
+        - **Databricks Get Started Days** (Data Engineering + SQL Analytics)
+        - **Cloud Computing & Data Science** (Amazon SageMaker e Microsoft Fabric)
+        """)
 
-    - Python para Análise de Dados  
-    - SQL e Modelagem de Dados  
-    - ETL e Pipelines de Dados  
-    - Power BI e Visualização de Dados  
-    - Automação de processos com Python  
-    """)
+    with st.expander("📊 Business Intelligence & Analytics", expanded=True):
+        st.markdown("""
+        - **AI/BI for Data Analysts** (Databricks)
+        - **Power BI: DAX contextos e iteração**
+        - **Modelagem e Análise de Dados com Power BI**
+        - **Looker Studio: Visualização de Dados**
+        - **Microsoft Power BI para Business Intelligence e Data Science**
+        - **SQL Para Análise de Dados e Data Science**
+        - **Projetos de Análise de Dados com Linguagem Python**
+        - **Storytelling e Dashboards de Alto Impacto**
+        """)
 
-    st.info("💡 Diversos cursos adicionais em plataformas como Data Science Academy e outras.")
+    with st.expander("🧠 Data Science, Estatística & ML", expanded=True):
+        st.markdown("""
+        - **Business Analytics & Machine Learning para Projetos**
+        - **Matemática e Estatística Aplicada** (Data Science, ML e IA)
+        - **Data Science para Análise Multivariada de Dados**
+        - **Fundamentos de Data Science e Inteligência Artificial**
+        """)
 
     st.divider()
 
     # =========================
-    # DIFERENCIAIS (OURO)
+    # DIFERENCIAIS (VISUALMENTE FORTES)
     # =========================
+    st.header("🚀 Diferenciais Estratégicos")
+    
+    # Criando 3 colunas para destacar os pontos fortes
+    d1, d2, d3 = st.columns(3)
+    with d1:
+        st.success("**Setor Financeiro**")
+        st.caption("Experiência em ambientes de alta criticidade (Bradesco, Itaú).")
+    with d2:
+        st.success("**Visão End-to-End**")
+        st.caption("Domínio desde a ingestão (ETL) até a entrega do Insight (BI).")
+    with d3:
+        st.success("**IA & Automação**")
+        st.caption("Implementação de agentes de IA e fluxos inteligentes.")
 
-    st.header("🚀 Diferenciais")
+    st.markdown("""
+        - **Escalabilidade & Big Data:** Expertise no processamento de grandes volumes de dados, aplicando técnicas de particionamento e processamento paralelo para otimizar performance e custos em nuvem.
+        - **Arquitetura Moderna (Data Lakehouse):** Implementação de arquiteturas que combinam a flexibilidade dos Data Lakes com a governança e performance de Data Warehouses, utilizando tecnologias como Databricks, Delta Lake e BigQuery.
+        - **Data Pipeline End-to-End:** Capacidade de atuar em todo o ciclo de vida do dado, desde a ingestão (ETL/ELT) e orquestração de fluxos complexos até a modelagem dimensional e entrega de Dashboards estratégicos.
+        - **Cultura de Governança e Qualidade:** Foco em garantir a integridade e a linhagem dos dados (Data Lineage), aplicando boas práticas de segurança e documentação em conformidade com as necessidades de setores regulados.
+        """)
 
-    st.write("""
-    - Experiência prática em ambiente corporativo (Bradesco, Itaú)  
-    - Atuação end-to-end em pipelines de dados  
-    - Forte integração entre Engenharia de Dados e Analytics  
-    - Experiência com grandes volumes de dados  
-    - Conhecimento em arquitetura de dados moderna  
-    - Background em setor financeiro (alto nível de exigência)  
-    """)
+    st.divider()
+    # Centralizando o título do rodapé de habilidades
+    st.markdown("<h3 style='text-align: center;'>🛠️ Stack Tecnológica</h3>", unsafe_allow_html=True)
+
+    # Bloco de ícones HTML
+    st.markdown("""
+    <p align="center">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.simpleicons.org/databricks" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.simpleicons.org/googlebigquery" width="40" style="margin: 10px;"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" width="40" style="margin: 10px;"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Microsoft_Excel_2013-2019_logo.svg" width="40" style="margin: 10px;"/>
+    </p>
+    """, unsafe_allow_html=True)
+
+    st.caption("<p style='text-align: center;'>André Luiz Colombo | Engenharia & Análise de Dados</p>", unsafe_allow_html=True)
+
+    # Rodapé informativo
+    st.info("💡 Para detalhes sobre projetos específicos, navegue pelo menu lateral.")
 
 # =========================
 # PROJETOS
