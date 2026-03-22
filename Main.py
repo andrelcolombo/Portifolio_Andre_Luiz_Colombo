@@ -21,7 +21,7 @@ st.set_page_config(
 # CONFIG GITHUB
 # =========================
 
-GITHUB_USERNAME = "andrelcolombo"  # Seu user real
+GITHUB_USERNAME = "andrelcolombo"  
 
 # =========================
 # FUNÇÃO API GITHUB
@@ -44,7 +44,7 @@ def carregar_repos():
         if response.status_code == 200:
             return response.json()
         else:
-            return [] # Retorna vazio se der erro (ativando seu st.warning)
+            return [] 
     except:
         return []
 # =========================
@@ -106,7 +106,6 @@ menu = st.sidebar.radio(
 if menu == "🏠 Sobre mim":
 
     
-
     # =========================
     # HEADER
     # =========================
@@ -140,15 +139,40 @@ if menu == "🏠 Sobre mim":
 
     st.header("🎯 Especialidades")
 
-    st.write("""
-    - Construção de pipelines de dados end-to-end  
-    - Processos de ETL e ELT em ambientes corporativos  
-    - Integração de dados (APIs, ERP, bancos relacionais)  
-    - Modelagem dimensional (Star Schema)  
-    - Data Quality e governança de dados  
-    - Automação de processos e otimização de rotinas  
-    - Preparação de dados para BI e Machine Learning  
-    """)
+    # Criando duas colunas para organizar melhor o espaço
+    col_esp1, col_esp2 = st.columns(2)
+
+    with col_esp1:
+        st.markdown("""
+        <div style="background-color: #262730; padding: 20px; border-radius: 10px; border-left: 5px solid #FF4B4B; margin-bottom: 20px;">
+            <h4 style="margin: 0;">🏗️ Arquitetura de Dados</h4>
+            <p style="font-size: 0.9rem; color: #FAFAFA;">
+                Construção de pipelines <b>End-to-End</b>, processos de <b>ETL/ELT</b> e estruturação de <b>Data Warehousing</b> robustos para suporte à decisão.
+            </p>
+        </div>
+        <div style="background-color: #262730; padding: 20px; border-radius: 10px; border-left: 5px solid #FF4B4B; margin-bottom: 20px;">
+            <h4 style="margin: 0;">🔗 Integração</h4>
+            <p style="font-size: 0.9rem; color: #FAFAFA;">
+                Conexão de dados complexos entre <b>APIs, ERPs</b> e bancos de dados relacionais, garantindo fluidez e integridade.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
+
+    with col_esp2:
+        st.markdown("""
+        <div style="background-color: #262730; padding: 20px; border-radius: 10px; border-left: 5px solid #FF4B4B; margin-bottom: 20px;">
+            <h4 style="margin: 0;">📐 Modelagem de Data Warehousing</h4>
+            <p style="font-size: 0.9rem; color: #FAFAFA;">
+                Expertise em <b>Star Schema</b> e modelagem voltada para performance em ferramentas de BI e Analytics.
+            </p>
+        </div>
+        <div style="background-color: #262730; padding: 20px; border-radius: 10px; border-left: 5px solid #FF4B4B; margin-bottom: 20px;">
+            <h4 style="margin: 0;">🛡️ Qualidade & Automação</h4>
+            <p style="font-size: 0.9rem; color: #FAFAFA;">
+                Foco em <b>Data Quality</b>, governança e automação de rotinas para otimizar o tempo de resposta do negócio.
+            </p>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.divider()
 
@@ -156,76 +180,132 @@ if menu == "🏠 Sobre mim":
     # EXPERIÊNCIA (REESCRITA PROFISSIONAL)
     # =========================
 
-    st.header("💼 Experiência Profissional")
+   # =========================
+    # LINHA DO TEMPO (EXPERIÊNCIA PROFISSIONAL)
+    # =========================
 
-    st.subheader("🏦 Data Engineer | Bradesco Seguros")
+    st.header("⏳ Trajetória Profissional")
 
-    st.write("""
-    - Desenvolvimento e manutenção de pipelines de ingestão e transformação de dados  
-    - Implementação de processos ETL/ELT com integração de múltiplas fontes (ERP, APIs, bases SQL)  
-    - Aplicação de Data Quality, validação e padronização de dados  
-    - Modelagem de dados e construção de datasets analíticos  
-    - Automação de rotinas e otimização de processos de dados  
-    - Preparação de dados para BI e projetos de machine learning  
-    - Otimização de consultas SQL e melhoria de performance  
-    - Governança, documentação e versionamento de dados  
-    """)
+    def timeline_item(periodo, cargo, empresa, detalhes):
+        detalhes_html = "".join([f"<li style='margin-bottom: 5px;'>{item}</li>" for item in detalhes])
+        
+        st.markdown(f"""
+            <div style="margin-left: 20px; padding-left: 20px; border-left: 2px solid #FF4B4B; position: relative; margin-bottom: 30px;">
+                <div style="position: absolute; width: 12px; height: 12px; background-color: #FF4B4B; border-radius: 50%; left: -7px; top: 5px;"></div>
+                <span style="font-size: 0.85rem; color: #888;">{periodo}</span>
+                <h4 style="margin: 0; color: #FAFAFA;">{cargo}</h4>
+                <h5 style="margin: 0; color: #FF4B4B; font-weight: normal;">{empresa}</h5>
+                <ul style="font-size: 0.9rem; color: #FAFAFA; margin-top: 10px; line-height: 1.4; padding-left: 20px;">
+                    {detalhes_html}
+                </ul>
+            </div>
+        """, unsafe_allow_html=True)
 
-    st.subheader("📊 Data Analyst | Netsupport")
+    # --- EXECUÇÃO DA TIMELINE ---
 
-    st.write("""
-    - Desenvolvimento de dashboards no Looker Studio  
-    - Integração de dados de múltiplas fontes  
-    - Automação com Python e SQL  
-    - Criação de KPIs e indicadores estratégicos  
-    """)
+    timeline_item(
+        "11/2024 - Atual", 
+        "Engenheiro de Dados", 
+        "Bradesco Seguros", 
+        [
+            "Construção e manutenção de pipelines de dados utilizando Python e SQL",
+            "Tratamento e transformação de dados corporativos para análises estratégicas",
+            "Desenvolvimento de dashboards executivos em Power BI e modelagem de indicadores",
+            "Apoio direto às áreas de negócio na interpretação de dados estratégicos"
+        ]
+    )
 
-    st.subheader("🏦 Data & Tech | Itaú Unibanco")
+    timeline_item(
+        "08/2024 - 11/2024", 
+        "Analista de Dados", 
+        "Netsupport", 
+        [
+            "Criação de relatórios e dashboards operacionais para acompanhamento de KPIs",
+            "Automação de rotinas utilizando Python e SQL",
+            "Integração de dados provenientes de múltiplas fontes corporativas"
+        ]
+    )
 
-    st.write("""
-    - Manipulação e análise de dados em larga escala  
-    - Desenvolvimento e otimização de queries SQL  
-    - Experiência com AWS (S3, EC2, RDS, Lambda)  
-    - Automação de processos e suporte a soluções corporativas  
-    - Atuação em ambiente ágil (Scrum)  
-    """)
+    timeline_item(
+        "06/2023 - 06/2024", 
+        "Analista Engenharia de TI", 
+        "Banco Itaú", 
+        [
+            "Análise e manipulação de dados em bases relacionais com consultas SQL avançadas",
+            "Utilização de serviços AWS (S3, EC2, RDS e Lambda) para soluções escaláveis",
+            "Desenvolvimento de automações para processos internos e relatórios",
+            "Entrega de incrementos de software funcionais seguindo a metodologia ágil (Scrum)"
+        ]
+    )
+
+    timeline_item(
+        "04/2021 - 06/2023", 
+        "Analista de Operações Corretora", 
+        "Itaú Unibanco", 
+        [
+            "Análise de dados operacionais e geração de indicadores de performance",
+            "Criação de dashboards em Excel e Power BI para visualização de resultados",
+            "Desenvolvimento de automações de relatórios utilizando VBA"
+        ]
+    )
+
+    timeline_item(
+        "11/2019 - 04/2021", 
+        "Estagiário de Engenharia/TI", 
+        "Itaú Unibanco", 
+        [
+            "Suporte técnico e apoio no desenvolvimento de soluções de dados",
+            "Início da trajetória em análise de processos e automação dentro do setor bancário"
+        ]
+    )
 
     st.divider()
-
     # =========================
     # STACK
     # =========================
 
     st.header("🚀 Stack Tecnológica")
 
+
     col1, col2, col3 = st.columns(3)
 
     with col1:
         st.subheader("🧠 Data Engineering")
-        st.write("""
-        - Python (Pandas, PySpark)  
-        - SQL Server  
-        - Spark  
-        - ETL / ELT  
-        """)
+        st.markdown("""
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="30"/><span style="margin-left: 10px;"><b>Python:</b> ETL e Automação</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" width="30"/><span style="margin-left: 10px;"><b>Pandas:</b> Manipulação de Dados</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" width="30"/><span style="margin-left: 10px;"><b>SQL Server:</b> Bancos Relacionais</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="30"/><span style="margin-left: 10px;"><b>PostgreSQL:</b> Queries Avançadas</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="30"/><span style="margin-left: 10px;"><b>MySQL:</b> Gestão de Dados</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/googlebigquery" width="30"/><span style="margin-left: 10px;"><b>BigQuery:</b> Data Warehousing</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/databricks" width="30"/><span style="margin-left: 10px;"><b>Databricks:</b> Spark e Big Data</span></div>
+            </div>
+        """, unsafe_allow_html=True)
 
     with col2:
         st.subheader("☁️ Cloud & Infra")
-        st.write("""
-        - AWS (S3, EC2, RDS, Lambda)  
-        - Docker  
-        - Linux  
-        - Git  
-        """)
+        st.markdown("""
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="30"/><span style="margin-left: 10px;"><b>AWS:</b> S3, EC2 e Lambda</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="30"/><span style="margin-left: 10px;"><b>Docker:</b> Containerização</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" width="30"/><span style="margin-left: 10px;"><b>Linux:</b> Adm. de Servidores</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="30"/><span style="margin-left: 10px;"><b>Git:</b> Versionamento</span></div>
+            </div>
+        """, unsafe_allow_html=True)
 
     with col3:
         st.subheader("📊 Analytics")
-        st.write("""
-        - Power BI  
-        - DAX  
-        - Looker Studio  
-        - Excel / VBA  
-        """)
+        st.markdown("""
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+                <div style="display: flex; align-items: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" width="30"/><span style="margin-left: 10px;"><b>Power BI:</b> Dashboards e DAX</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/looker" width="30"/><span style="margin-left: 10px;"><b>Looker:</b> Visualização Cloud</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Tableau_Logo.png" width="90"/><span style="margin-left: 10px;"><b>Tableau:</b> Business Intelligence</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Microsoft_Excel_2013-2019_logo.svg" width="30"/><span style="margin-left: 10px;"><b>Excel:</b> VBA e Planilhas</span></div>
+            </div>
+        """, unsafe_allow_html=True)
+
+
 
     st.divider()
 
@@ -280,7 +360,9 @@ if menu == "🏠 Sobre mim":
         
         Fora do trabalho, você provavelmente vai me encontrar:
         - **Explorando novos setups:** Sou fascinado por eletrônicos e hardware. Se tem uma tecnologia nova saindo, eu quero entender como funciona.
+                 
         - **No mundo dos Games:** Onde exercito minha estratégia e reflexos (e claro, admiro o trabalho de engenharia por trás dos gráficos).
+                 
         - **Me atualizando:** O mundo tech não para, e minha sede por aprender coisas novas é o que me mantém em movimento.
         """)
 
@@ -349,6 +431,7 @@ elif menu == "ℹ️ Informações":
         - **SQL Para Análise de Dados e Data Science**
         - **Projetos de Análise de Dados com Linguagem Python**
         - **Storytelling e Dashboards de Alto Impacto**
+        - **Tableau: Visualização de Dados**
         """)
 
     with st.expander("🧠 Data Science, Estatística & ML", expanded=True):
@@ -380,8 +463,11 @@ elif menu == "ℹ️ Informações":
 
     st.markdown("""
         - **Escalabilidade & Big Data:** Expertise no processamento de grandes volumes de dados, aplicando técnicas de particionamento e processamento paralelo para otimizar performance e custos em nuvem.
+                
         - **Arquitetura Moderna (Data Lakehouse):** Implementação de arquiteturas que combinam a flexibilidade dos Data Lakes com a governança e performance de Data Warehouses, utilizando tecnologias como Databricks, Delta Lake e BigQuery.
+                
         - **Data Pipeline End-to-End:** Capacidade de atuar em todo o ciclo de vida do dado, desde a ingestão (ETL/ELT) e orquestração de fluxos complexos até a modelagem dimensional e entrega de Dashboards estratégicos.
+                
         - **Cultura de Governança e Qualidade:** Foco em garantir a integridade e a linhagem dos dados (Data Lineage), aplicando boas práticas de segurança e documentação em conformidade com as necessidades de setores regulados.
         """)
 
@@ -405,7 +491,7 @@ elif menu == "ℹ️ Informações":
         <img src="https://cdn.simpleicons.org/googlebigquery" width="40" style="margin: 10px;"/>
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" width="40" style="margin: 10px;"/>
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Microsoft_Excel_2013-2019_logo.svg" width="40" style="margin: 10px;"/>
-    </p>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Tableau_Logo.png" width="90"/><span style="margin-left: 10px;"/>
     """, unsafe_allow_html=True)
 
     st.caption("<p style='text-align: center;'>André Luiz Colombo | Engenharia & Análise de Dados</p>", unsafe_allow_html=True)
