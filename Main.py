@@ -142,15 +142,17 @@ if menu == "🏠 Sobre mim":
     # Criando duas colunas para organizar melhor o espaço
     col_esp1, col_esp2 = st.columns(2)
 
+    estilo_box = "background-color: #262730; padding: 20px; border-radius: 10px; border-left: 5px solid #FF4B4B; margin-bottom: 20px; min-height: 160px;"
+
     with col_esp1:
-        st.markdown("""
-        <div style="background-color: #262730; padding: 20px; border-radius: 10px; border-left: 5px solid #FF4B4B; margin-bottom: 20px;">
+        st.markdown(f"""
+        <div style="{estilo_box}">
             <h4 style="margin: 0;">🏗️ Arquitetura de Dados</h4>
             <p style="font-size: 0.9rem; color: #FAFAFA;">
                 Construção de pipelines <b>End-to-End</b>, processos de <b>ETL/ELT</b> e estruturação de <b>Data Warehousing</b> robustos para suporte à decisão.
             </p>
         </div>
-        <div style="background-color: #262730; padding: 20px; border-radius: 10px; border-left: 5px solid #FF4B4B; margin-bottom: 20px;">
+        <div style="{estilo_box}">
             <h4 style="margin: 0;">🔗 Integração</h4>
             <p style="font-size: 0.9rem; color: #FAFAFA;">
                 Conexão de dados complexos entre <b>APIs, ERPs</b> e bancos de dados relacionais, garantindo fluidez e integridade.
@@ -159,14 +161,14 @@ if menu == "🏠 Sobre mim":
         """, unsafe_allow_html=True)
 
     with col_esp2:
-        st.markdown("""
-        <div style="background-color: #262730; padding: 20px; border-radius: 10px; border-left: 5px solid #FF4B4B; margin-bottom: 20px;">
+        st.markdown(f"""
+        <div style="{estilo_box}">
             <h4 style="margin: 0;">📐 Modelagem de Data Warehousing</h4>
             <p style="font-size: 0.9rem; color: #FAFAFA;">
                 Expertise em <b>Star Schema</b> e modelagem voltada para performance em ferramentas de BI e Analytics.
             </p>
         </div>
-        <div style="background-color: #262730; padding: 20px; border-radius: 10px; border-left: 5px solid #FF4B4B; margin-bottom: 20px;">
+        <div style="{estilo_box}">
             <h4 style="margin: 0;">🛡️ Qualidade & Automação</h4>
             <p style="font-size: 0.9rem; color: #FAFAFA;">
                 Foco em <b>Data Quality</b>, governança e automação de rotinas para otimizar o tempo de resposta do negócio.
@@ -177,10 +179,6 @@ if menu == "🏠 Sobre mim":
     st.divider()
 
     # =========================
-    # EXPERIÊNCIA (REESCRITA PROFISSIONAL)
-    # =========================
-
-   # =========================
     # LINHA DO TEMPO (EXPERIÊNCIA PROFISSIONAL)
     # =========================
 
@@ -401,14 +399,48 @@ elif menu == "ℹ️ Informações":
     # =========================
     # CERTIFICAÇÕES (ORGANIZADAS POR EXPANDERS)
     # =========================
+   
+    caminho_badge_fcd = os.path.join(BASE_DIR, "imagens", "Badge - FCD 4.0 - André Luiz Colombo.png")
+    caminho_badge_fada = os.path.join(BASE_DIR, "imagens", "Badge - FADA 4.0 - André Luiz Colombo.png")
+
     st.header("🏅 Especializações e Certificações")
-    st.caption("Clique nos grupos para expandir ou recolher as informações.")
+    st.info("Clique nos grupos para expandir ou recolher as informações.")
 
     with st.expander("🏆 Formações Principais (Master)", expanded=True):
         st.markdown("""
-        - **Formação Cientista de Dados 4.0** - *Data Science Academy*
+        - **Formação Cientista de Dados 4.0** - *Data Science Academy* 
         - **Formação Analista de Dados 4.0** - *Data Science Academy*
         """)
+
+        col_badge1, col_badge2 = st.columns(2, gap="large")
+
+        vazia_esq, col_badge1, col_badge2, vazia_dir = st.columns([1, 2, 2, 1])
+
+
+        # Lógica para Badge FCD (PNG)
+
+        if os.path.exists(caminho_badge_fcd):
+            badge_fcd_base64 = carregar_imagem_base64(caminho_badge_fcd)
+            with col_badge1: # Usa a segunda coluna
+                st.markdown(f"""
+                    <div style="text-align: center;">
+                        <img src="data:image/png;base64,{badge_fcd_base64}" width="80%" style="border-radius: 10px; border: 1px solid #31333F;">
+                        <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Cientista de Dados 4.0</p>
+                    </div>
+                """, unsafe_allow_html=True)
+
+        # Lógica para Badge FADA (PNG)
+        if os.path.exists(caminho_badge_fada):
+            badge_fada_base64 = carregar_imagem_base64(caminho_badge_fada)
+            with col_badge2: # Usa a terceira coluna
+                st.markdown(f"""
+                    <div style="text-align: center;">
+                        <img src="data:image/png;base64,{badge_fada_base64}" width="80%" style="border-radius: 10px; border: 1px solid #31333F;">
+                        <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Analista de Dados 4.0</p>
+                    </div>
+                """, unsafe_allow_html=True)
+        else:
+            col_badge2.warning("Arquivo FADA (.png) não encontrado.")
 
     with st.expander("⚙️ Engenharia de Dados, Cloud & Automação", expanded=True):
         st.markdown("""
