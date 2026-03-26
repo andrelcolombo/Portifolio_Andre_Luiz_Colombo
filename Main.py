@@ -227,7 +227,7 @@ if menu == "🏠 Sobre mim":
     timeline_item(
         "06/2023 - 06/2024", 
         "Analista Engenharia de TI", 
-        "Banco Itaú", 
+        "Itaú Unibanco", 
         [
             "Análise e manipulação de dados em bases relacionais com consultas SQL avançadas",
             "Utilização de serviços AWS (S3, EC2, RDS e Lambda) para soluções escaláveis",
