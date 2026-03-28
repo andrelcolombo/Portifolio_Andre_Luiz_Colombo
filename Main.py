@@ -406,7 +406,7 @@ elif menu == "ℹ️ Informações":
     st.header("🏅 Especializações e Certificações")
     st.info("Clique nos grupos para expandir ou recolher as informações.")
 
-    with st.expander("🏆 Formações Principais (Master)", expanded=True):
+    with st.expander("🏆 Formações Principais (Master)", expanded=False):
         st.markdown("""
         - **Formação Cientista de Dados 4.0** - *Data Science Academy* 
         - **Formação Analista de Dados 4.0** - *Data Science Academy*
@@ -442,7 +442,7 @@ elif menu == "ℹ️ Informações":
         else:
             col_badge2.warning("Arquivo FADA (.png) não encontrado.")
 
-    with st.expander("⚙️ Engenharia de Dados, Cloud & Automação", expanded=True):
+    with st.expander("⚙️ Engenharia de Dados, Cloud & Automação", expanded=False):
         st.markdown("""
         - **IA Generativa e Agentes de IA Para Fluxos de Automação com Langflow e n8n**
         - **SQL Server Integration Services (SSIS) - ETL Avançado** 
@@ -453,7 +453,7 @@ elif menu == "ℹ️ Informações":
         - **Cloud Computing & Data Science** (Amazon SageMaker e Microsoft Fabric)
         """)
 
-    with st.expander("📊 Business Intelligence & Analytics", expanded=True):
+    with st.expander("📊 Business Intelligence & Analytics", expanded=False):
         st.markdown("""
         - **AI/BI for Data Analysts** (Databricks)
         - **Power BI: DAX contextos e iteração**
@@ -466,7 +466,7 @@ elif menu == "ℹ️ Informações":
         - **Tableau: Visualização de Dados**
         """)
 
-    with st.expander("🧠 Data Science, Estatística & ML", expanded=True):
+    with st.expander("🧠 Data Science, Estatística & ML", expanded=False):
         st.markdown("""
         - **Business Analytics & Machine Learning para Projetos**
         - **Matemática e Estatística Aplicada** (Data Science, ML e IA)
