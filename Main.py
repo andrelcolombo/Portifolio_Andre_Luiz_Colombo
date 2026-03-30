@@ -346,7 +346,7 @@ if menu == "🏠 Sobre mim":
     # QUEM É O ANDRÉ (LADO PESSOAL)
     # =========================
 
-    st.header("👤 Além dos Pipelines: Quem é o André?")
+    st.header("👤 Entre Códigos e Cafés: Conheça o André")
 
     col_text, col_hobbies = st.columns([2, 1])
 
@@ -582,31 +582,29 @@ elif menu == "📊 Projetos":
         # Ordenar pelos mais recentes ou com mais estrelas
         repos_filtrados = sorted(repos_filtrados, key=lambda x: x['stargazers_count'], reverse=True)
 
-        # --- EXIBIÇÃO EM GRID (2 colunas) ---
-        for i in range(0, len(repos_filtrados), 2):
-            cols = st.columns(2)
-            
-            for j in range(2):
-                if i + j < len(repos_filtrados):
-                    repo = repos_filtrados[i+j]
+        for repo in repos_filtrados:
+           
+            margem_esq, centro, margem_dir = st.columns([1, 6, 1])
+
+            with centro:
+                with st.container(border=True):
+                    # Título
+                    nome = repo['name'].replace('-', ' ').title()
+                    st.markdown(f"### 📁 {nome}")
                     
-                    with cols[j]:
-                        # Container estilizado para cada projeto
-                        with st.container(border=True):
-                            st.markdown(f"### 📁 {repo['name'].replace('-', ' ').title()}")
-                            
-                            # Badge de Linguagem com cor
-                            lang = repo["language"]
-                            if lang:
-                                color = "#FF4B4B" if lang == "Python" else "#0083B0"
-                                st.markdown(f"<span style='background-color:{color}; padding:2px 8px; border-radius:10px; color:white; font-size:12px;'>{lang}</span>", unsafe_allow_html=True)
-                            
-                            st.write(f"_{repo['description']}_")
-                            
-                            # Métricas do Repo
-                            st.caption(f"⭐ {repo['stargazers_count']} | 🍴 {repo['forks_count']} | 📅 Atualizado em: {repo['updated_at'][:10]}")
-                            
-                            st.link_button("🌐 Acessar Repositório", repo["html_url"], use_container_width=True)
+                    # Badge
+                    lang = repo.get("language")
+                    if lang:
+                        color = "#FF4B4B" if lang == "Python" else "#0083B0"
+                        st.markdown(f"<span style='background-color:{color}; padding:2px 8px; border-radius:10px; color:white; font-size:12px;'>{lang}</span>", unsafe_allow_html=True)
+                    
+                    # Descrição com corte (Garanta que a classe 'repo-desc-box' esteja no seu CSS lá no topo)
+                    desc = repo.get('description') or "Sem descrição."
+                    st.markdown(f'<div class="repo-desc-box"><i>{desc}</i></div>', unsafe_allow_html=True)
+                    
+                    # Rodapé
+                    st.caption(f"⭐ {repo.get('stargazers_count', 0)} | 🍴 {repo.get('forks_count', 0)}")
+                    st.link_button("🌐 Acessar Repositório", repo["html_url"], use_container_width=True)
     else:
         st.warning("Não foi possível carregar os projetos. Verifique sua conexão ou limite da API.")
 # =========================
