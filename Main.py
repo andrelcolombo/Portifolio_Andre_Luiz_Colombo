@@ -79,6 +79,9 @@ st.sidebar.markdown(
         overflow:hidden;
         margin-left:auto;
         margin-right:auto;
+        margin-bottom: 50px; 
+        border: 2px solid #31333F; /* Cinza escuro discreto, quase imperceptível */
+        box-shadow: 0px 8px 20px rgba(0,0,0,0.4); /* Sombra mais suave e elegante */
     ">
         <img src="data:image/jpeg;base64,{img_base64}" 
              style="
@@ -98,14 +101,20 @@ st.sidebar.markdown(
 # MENU
 # =========================
 
-menu = st.sidebar.radio(
-    "Menu",
-    ["🏠 Sobre mim", "ℹ️ Informações", "📊 Projetos", "📞 Contato"]
-)
+with st.sidebar:
+    st.title("Menu")
+
+    menu = st.sidebar.radio(
+        "Opções",
+        ["🏠 Sobre mim", "ℹ️ Informações", "📊 Projetos", "📞 Contato"]
+    )
+
+    st.markdown("<br><br>", unsafe_allow_html=True)
+    
+    st.divider()
 
 if menu == "🏠 Sobre mim":
 
-    
     # =========================
     # HEADER
     # =========================
@@ -114,7 +123,7 @@ if menu == "🏠 Sobre mim":
     st.subheader("Data Engineer | ETL & Data Pipelines | Analytics")
 
     # =========================
-    # RESUMO PROFISSIONAL (FORTE)
+    # RESUMO PROFISSIONAL
     # =========================
 
     st.write("""
@@ -199,7 +208,9 @@ if menu == "🏠 Sobre mim":
             </div>
         """, unsafe_allow_html=True)
 
-    # --- EXECUÇÃO DA TIMELINE ---
+    # =========================
+    # EXECUÇÃO DA TIMELINE 
+    # =========================
 
     timeline_item(
         "11/2024 - Atual", 
@@ -308,7 +319,7 @@ if menu == "🏠 Sobre mim":
     st.divider()
 
     # =========================
-    # POSICIONAMENTO (OURO)
+    # POSICIONAMENTO
     # =========================
 
     st.header("📌 Objetivo Profissional")
@@ -375,11 +386,21 @@ if menu == "🏠 Sobre mim":
 
     st.divider()
 
+    st.markdown(
+    """
+    <div style="text-align: center; color: #888; font-size: 0.8rem; margin-top: 10px;">
+        André Luiz Colombo | Engenharia & Análise de Dados
+    </div>
+    """, 
+    unsafe_allow_html=True
+)
+
 # =========================
 # INFORMAÇÕES PROFISSIONAIS
 # =========================
 
 elif menu == "ℹ️ Informações":
+
     st.title("📚 Informações Profissionais")
 
     # =========================
@@ -397,7 +418,7 @@ elif menu == "ℹ️ Informações":
     st.divider()
 
     # =========================
-    # CERTIFICAÇÕES (ORGANIZADAS POR EXPANDERS)
+    # CERTIFICAÇÕES
     # =========================
    
     caminho_badge_fcd = os.path.join(BASE_DIR, "imagens", "Badge - FCD 4.0 - André Luiz Colombo.png")
@@ -526,10 +547,17 @@ elif menu == "ℹ️ Informações":
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Tableau_Logo.png" width="90"/><span style="margin-left: 10px;"/>
     """, unsafe_allow_html=True)
 
-    st.caption("<p style='text-align: center;'>André Luiz Colombo | Engenharia & Análise de Dados</p>", unsafe_allow_html=True)
-
     # Rodapé informativo
     st.info("💡 Para detalhes sobre projetos específicos, navegue pelo menu lateral.")
+
+    st.markdown(
+    """
+    <div style="text-align: center; color: #888; font-size: 0.8rem; margin-top: 10px;">
+        André Luiz Colombo | Engenharia & Análise de Dados
+    </div>
+    """, 
+    unsafe_allow_html=True
+)
 
 # =========================
 # PROJETOS
@@ -538,8 +566,6 @@ elif menu == "ℹ️ Informações":
 elif menu == "📊 Projetos":
 
     # st.title("Projetos 🚀")
-
-    # Substitua: st.title("Projetos 🚀") por:
 
     st.markdown(
         f"""
@@ -552,7 +578,6 @@ elif menu == "📊 Projetos":
         unsafe_allow_html=True
     )
 
-    # --- NOVO BLOCO: Link para o Perfil ---
     col_tit, col_btn = st.columns([2, 1])
     
     with col_tit:
@@ -607,43 +632,137 @@ elif menu == "📊 Projetos":
                     st.link_button("🌐 Acessar Repositório", repo["html_url"], use_container_width=True)
     else:
         st.warning("Não foi possível carregar os projetos. Verifique sua conexão ou limite da API.")
+
+    st.markdown(
+    """
+    <div style="text-align: center; color: #888; font-size: 0.8rem; margin-top: 10px;">
+        André Luiz Colombo | Engenharia & Análise de Dados
+    </div>
+    """, 
+    unsafe_allow_html=True
+)    
+    
 # =========================
 # CONTATO
 # =========================
 
 elif menu == "📞 Contato":
+    st.title("Vamos conversar? 📞")
+    st.write("Estou aberto a novas conexões, projetos e oportunidades na área de dados.")
 
-    st.title("Contato 📞")
-    st.write("Escolha a melhor forma de entrar em contato comigo:")
+    # =========================
+    # CARDS DE AÇÃO RÁPIDA
+    # =========================
+    
+    estilo_card = """
+        background-color: #262730; 
+        padding: 25px 10px; 
+        border-radius: 12px; 
+        border-top: 4px solid #FF4B4B; 
+        margin-bottom: 10px;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    """
 
-    # Criando colunas para os botões de ação
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.subheader("E-mail")
-        st.write("Resposta em até 24h")
-        # Botão que abre o app de e-mail do usuário
-        st.link_button("📧 Enviar E-mail", "mailto:andre-luiz-colombo@outlook.com")
+        st.markdown(f"""
+            <div style="{estilo_card}">
+                <img src="https://cdn.simpleicons.org/gmail/EA4335" width="45" style="margin-bottom:15px;">
+                <span style="color: white; font-size: 1.25rem; font-weight: bold; display: block; width: 100%;">E-mail</span>
+                <span style="color: #888; font-size: 0.85rem; display: block; width: 100%; margin-top: 5px;">Propostas formais</span>
+            </div>
+        """, unsafe_allow_html=True)
+        st.link_button("Enviar E-mail", "mailto:andre-luiz-colombo@outlook.com", use_container_width=True)
 
     with col2:
-        st.subheader("LinkedIn")
-        st.write("Rede profissional e chat")
-        st.link_button("🔗 Ver Perfil", "https://www.linkedin.com/in/andr%C3%A9-luiz-colombo-729755111/")
+        st.markdown(f"""
+            <div style="{estilo_card}">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="45" style="margin-bottom:15px;">
+                <span style="color: white; font-size: 1.25rem; font-weight: bold; display: block; width: 100%;">LinkedIn</span>
+                <span style="color: #888; font-size: 0.85rem; display: block; width: 100%; margin-top: 5px;">Rede Profissional</span>
+            </div>
+        """, unsafe_allow_html=True)
+        st.link_button("Ver Perfil", "https://www.linkedin.com/in/andr%C3%A9-luiz-colombo-729755111/", use_container_width=True)
 
     with col3:
-        st.subheader("GitHub")
-        st.write("Meus códigos e projetos")
-        st.link_button("🌐 Acessar Repos", "https://github.com/andrelcolombo")
+        st.markdown(f"""
+            <div style="{estilo_card}">
+                <img src="https://cdn.simpleicons.org/whatsapp/25D366" width="45" style="margin-bottom:15px;">
+                <span style="color: white; font-size: 1.25rem; font-weight: bold; display: block; width: 100%;">WhatsApp</span>
+                <span style="color: #888; font-size: 0.85rem; display: block; width: 100%; margin-top: 5px;">Contato Direto</span>
+            </div>
+        """, unsafe_allow_html=True)
+        st.link_button("Chamar agora", "https://wa.me/5511969177343", use_container_width=True)
 
     st.divider()
 
-    # Informações Adicionais em um card visual
-    with st.expander("📍 Outras Informações", expanded=True):
-        st.markdown(f"""
-        - **Localização:** São Paulo, SP
-        - **Telefone/WhatsApp: (11)96917-7343**  [Clique para chamar](https://wa.me/5511969177343)
-        - **E-mail:** andre-luiz-colombo@outlook.com
-        - **LinkedIn:** [linkedin.com/in/andrelcolombo](https://www.linkedin.com/in/andr%C3%A9-luiz-colombo-729755111/)
-        - **GitHub:** [github.com/andrelcolombo](https://github.com/andrelcolombo)
-        - **Horário de Disponibilidade:** Segunda a Sexta, das 09:00 às 18:00
-        """)
+    # =========================
+    # INFORMAÇÕES DETALHADAS
+    # =========================
+    
+    c_info, c_status = st.columns([2, 1])
+
+    with c_info:
+        st.header("📍 Detalhes de Contato")
+        with st.container(border=True):
+     
+            st.markdown(f"""
+            <div style="display: flex; flex-direction: column; gap: 12px; padding: 10px;">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="https://cdn.simpleicons.org/googlemaps/4285F4" width="20">
+                    <span><b>Localização:</b> São Paulo, SP</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="https://cdn.simpleicons.org/gmail/EA4335" width="20">
+                    <span><b>E-mail:</b> <a href="mailto:andre-luiz-colombo@outlook.com" style="color: #FF4B4B; text-decoration: none;">andre-luiz-colombo@outlook.com</a></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="20">
+                    <span><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/andr%C3%A9-luiz-colombo-729755111/" style="color: #FF4B4B; text-decoration: none;">linkedin.com/in/andre-luiz-colombo</a></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="https://cdn.simpleicons.org/whatsapp/25D366" width="20">
+                    <span><b>Telefone:</b> <a href="https://wa.me/5511969177343" style="color: #FF4B4B; text-decoration: none;">(11) 96917-7343</a></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="https://cdn.simpleicons.org/github/FFFFFF" width="20">
+                    <span><b>GitHub:</b> <a href="https://github.com/andrelcolombo" style="color: #FF4B4B; text-decoration: none;">github.com/andrelcolombo</a></span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="https://cdn.simpleicons.org/databricks/FF3621" width="20">
+                    <span><b>Foco Atual:</b> Data Engineering & Analytics Engineering</span>
+                </div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <img src="https://cdn.simpleicons.org/python/3776AB" width="20">
+                    <span><b>Stack Principal:</b> Python, SQL, Spark, ETL/ELT, Analytics & Cloud</span>
+                </div>
+            </div>
+        """, unsafe_allow_html=True)
+            
+            st.write("")
+            st.caption("🚀 Atuando na construção de arquiteturas de dados modernas e escaláveis.")
+
+    with c_status:
+        st.header("🕒 Disponibilidade")
+        with st.container(border=True):
+            st.success("**Disponível para novos projetos**")
+            st.markdown("""
+            **Horário Comercial:** Segunda a Sexta  
+            09:00 — 18:00
+            """)
+
+    # Rodapé final
+    st.markdown(
+    """
+    <div style="text-align: center; color: #888; font-size: 0.8rem; margin-top: 10px;">
+        André Luiz Colombo | Engenharia & Análise de Dados
+    </div>
+    """, 
+    unsafe_allow_html=True
+)
