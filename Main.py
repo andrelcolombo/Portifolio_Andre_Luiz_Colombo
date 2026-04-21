@@ -106,7 +106,7 @@ with st.sidebar:
 
     menu = st.sidebar.radio(
         "Opções",
-        ["🏠 Sobre mim", "ℹ️ Informações", "📊 Projetos", "📞 Contato"]
+        ["🏠 Sobre mim", "ℹ️ Informações", "🗂️ Projetos", "☎️ Contato"]
     )
 
     st.markdown("<br><br>", unsafe_allow_html=True)
@@ -563,7 +563,7 @@ elif menu == "ℹ️ Informações":
 # PROJETOS
 # =========================
 
-elif menu == "📊 Projetos":
+elif menu == "🗂️ Projetos":
 
     # st.title("Projetos 🚀")
 
@@ -646,8 +646,8 @@ elif menu == "📊 Projetos":
 # CONTATO
 # =========================
 
-elif menu == "📞 Contato":
-    st.title("Vamos conversar? 📞")
+elif menu == "☎️ Contato":
+    st.title("Vamos conversar? 📱")
     st.write("Estou aberto a novas conexões, projetos e oportunidades na área de dados.")
 
     # =========================
