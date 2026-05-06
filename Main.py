@@ -54,6 +54,7 @@ def carregar_repos():
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 caminho_imagem = os.path.join(BASE_DIR, "imagens", "minha_foto.jpeg")
 caminho_logo_github = os.path.join(BASE_DIR, "imagens", "logotipo-do-github.png")
+caminho_cv = os.path.join("cv", "Andre_Luiz_Colombo_Currículo.pdf")
 
 # =========================
 # FUNÇÃO PARA CONVERTER IMAGEM
@@ -108,10 +109,36 @@ with st.sidebar:
         "Opções",
         ["🏠 Sobre mim", "ℹ️ Informações", "🗂️ Projetos", "☎️ Contato"]
     )
-
-    st.markdown("<br><br>", unsafe_allow_html=True)
+    #st.markdown("<br><br>", unsafe_allow_html=True)    
+    st.markdown(
+        """
+        <style>
+            hr {
+                margin-top: 10px !important;
+                margin-bottom: 15px !important;
+            }
+        </style>
+        """, 
+        unsafe_allow_html=True
+    )
     
-    st.divider()
+    st.divider()     
+    
+    col_side_esq, col_side_centro, col_side_dir = st.columns([1, 8, 1])
+    
+    with col_side_centro:
+        try:
+            with open(caminho_cv, "rb") as arquivo:
+                st.download_button(
+                    label="📄 Baixar CV (PDF)",
+                    data=arquivo,
+                    file_name="Andre_Luiz_Colombo_Curriculo.pdf",
+                    mime="application/pdf",
+                    type="primary",
+                    use_container_width=True # Ajusta a largura perfeita dentro da coluna central
+                )
+        except FileNotFoundError:
+            st.caption("⚠️ Arquivo do CV não encontrado")
 
 if menu == "🏠 Sobre mim":
 
@@ -237,7 +264,7 @@ if menu == "🏠 Sobre mim":
 
     timeline_item(
         "06/2023 - 06/2024", 
-        "Analista Engenharia de TI", 
+        "Analista de Dados e Automação", 
         "Itaú Unibanco", 
         [
             "Análise e manipulação de dados em bases relacionais com consultas SQL avançadas",
@@ -249,7 +276,7 @@ if menu == "🏠 Sobre mim":
 
     timeline_item(
         "04/2021 - 06/2023", 
-        "Analista de Operações Corretora", 
+        "Analista de Business Intelligence - Corretora", 
         "Itaú Unibanco", 
         [
             "Análise de dados operacionais e geração de indicadores de performance",
@@ -743,9 +770,24 @@ elif menu == "☎️ Contato":
                     <span><b>Stack Principal:</b> Python, SQL, Spark, ETL/ELT, Analytics & Cloud</span>
                 </div>
             </div>
-        """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)           
             
-            st.write("")
+            
+            st.write("")           
+            
+            try:
+                with open(caminho_cv, "rb") as arquivo:
+                    st.download_button(
+                        label="📄 Baixar Currículo (PDF)",
+                        data=arquivo,
+                        file_name="Andre_Luiz_Colombo_Curriculo.pdf",
+                        mime="application/pdf",
+                        use_container_width=True,
+                        type="primary"
+                    )
+            except FileNotFoundError:
+                st.error("Currículo não encontrado.")                
+                
             st.caption("🚀 Atuando na construção de arquiteturas de dados modernas e escaláveis.")
 
     with c_status:
@@ -756,6 +798,8 @@ elif menu == "☎️ Contato":
             **Horário Comercial:** Segunda a Sexta  
             09:00 — 18:00
             """)
+            
+           
 
     # Rodapé final
     st.markdown(
