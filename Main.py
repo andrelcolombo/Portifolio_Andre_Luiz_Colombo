@@ -68,6 +68,28 @@ img_base64 = carregar_imagem_base64(caminho_imagem)
 logo_github_base64 = carregar_imagem_base64(caminho_logo_github)
 
 # =========================
+# CSS para esconder elementos do Streamlit e o botão do GitHub
+# =========================
+
+hide_github_icon = """
+    <style>
+    .stAppDeployButton {
+        display: none !important;
+    }
+    #MainMenu {
+        visibility: hidden;
+    }
+    footer {
+        visibility: hidden;
+    }
+    header {
+        visibility: hidden;
+    }
+    </style>
+"""
+st.markdown(hide_github_icon, unsafe_allow_html=True)
+
+# =========================
 # CSS PARA FOTO REDONDA NO SIDEBAR
 # =========================
 
@@ -324,6 +346,7 @@ if menu == "🏠 Sobre mim":
         st.markdown("""
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="30"/><span style="margin-left: 10px;"><b>AWS:</b> S3, EC2 e Lambda</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" width="30"/><span style="margin-left: 10px;"><b>Terraform:</b> Infraestrutura como Código</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="30"/><span style="margin-left: 10px;"><b>Docker:</b> Containerização</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" width="30"/><span style="margin-left: 10px;"><b>Linux:</b> Adm. de Servidores</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="30"/><span style="margin-left: 10px;"><b>Git:</b> Versionamento</span></div>
@@ -371,10 +394,10 @@ if menu == "🏠 Sobre mim":
     🎓 MBA em Data Science & Advanced Analytics  
     Impacta Tecnologia  
 
-    🎓 Formação em Análise de Dados  
+    🎓 Formação Profissional em Análise de Dados  
     Data Science Academy  
              
-    🎓 Formação em Ciência de Dados  
+    🎓 Formação Profissional em Ciência de Dados  
     Data Science Academy  
     """)
 
@@ -456,8 +479,8 @@ elif menu == "ℹ️ Informações":
 
     with st.expander("🏆 Formações Principais (Master)", expanded=False):
         st.markdown("""
-        - **Formação Cientista de Dados 4.0** - *Data Science Academy* 
-        - **Formação Analista de Dados 4.0** - *Data Science Academy*
+        - **Formação Profissional - Cientista de Dados 4.0** - *Data Science Academy* 
+        - **Formação Profissional - Analista de Dados 4.0** - *Data Science Academy*
         """)
 
         col_badge1, col_badge2 = st.columns(2, gap="large")
@@ -569,6 +592,7 @@ elif menu == "ℹ️ Informações":
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="40" style="margin: 10px;"/>
         <img src="https://cdn.simpleicons.org/databricks" width="40" style="margin: 10px;"/>
         <img src="https://cdn.simpleicons.org/googlebigquery" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" width="40" style="margin: 10px;"/>
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" width="40" style="margin: 10px;"/>
         <img src="https://upload.wikimedia.org/wikipedia/commons/7/73/Microsoft_Excel_2013-2019_logo.svg" width="40" style="margin: 10px;"/>
         <img src="https://upload.wikimedia.org/wikipedia/commons/4/4b/Tableau_Logo.png" width="90"/><span style="margin-left: 10px;"/>
@@ -788,7 +812,7 @@ elif menu == "☎️ Contato":
             except FileNotFoundError:
                 st.error("Currículo não encontrado.")                
                 
-            st.caption("🚀 Atuando na construção de arquiteturas de dados modernas e escaláveis.")
+            st.caption("Atuando na construção de arquiteturas de dados modernas e escaláveis.")
 
     with c_status:
         st.header("🕒 Disponibilidade")
