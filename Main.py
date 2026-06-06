@@ -337,7 +337,9 @@ if menu == "🏠 Sobre mim":
                 <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" width="30"/><span style="margin-left: 10px;"><b>PostgreSQL:</b> Queries Avançadas</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" width="30"/><span style="margin-left: 10px;"><b>MySQL:</b> Gestão de Dados</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/googlebigquery" width="30"/><span style="margin-left: 10px;"><b>BigQuery:</b> Data Warehousing</span></div>
-                <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/databricks" width="30"/><span style="margin-left: 10px;"><b>Databricks:</b> Spark e Big Data</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/databricks" width="30"/><span style="margin-left: 10px;"><b>Databricks:</b>Lakehouse e Governança</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/apachespark" width="30"/><span style="margin-left: 10px;"><b>Spark:</b>Processamento Distribuído</span></div>
+
             </div>
         """, unsafe_allow_html=True)
 
@@ -576,7 +578,7 @@ elif menu == "ℹ️ Informações":
 
     st.divider()
     # Centralizando o título do rodapé de habilidades
-    st.markdown("<h3 style='text-align: center;'>🛠️ Stack Tecnológica</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='text-align: center;'>Stack Tecnológica</h3>", unsafe_allow_html=True)
 
     # Bloco de ícones HTML
     st.markdown("""
@@ -591,6 +593,7 @@ elif menu == "ℹ️ Informações":
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" style="margin: 10px;"/>
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="40" style="margin: 10px;"/>
         <img src="https://cdn.simpleicons.org/databricks" width="40" style="margin: 10px;"/>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Apache_Spark_logo.svg" width="40" style="margin: 10px;"/>
         <img src="https://cdn.simpleicons.org/googlebigquery" width="40" style="margin: 10px;"/>
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" width="40" style="margin: 10px;"/>
         <img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg" width="40" style="margin: 10px;"/>
