@@ -71,23 +71,23 @@ logo_github_base64 = carregar_imagem_base64(caminho_logo_github)
 # CSS para esconder elementos do Streamlit e o botão do GitHub
 # =========================
 
-hide_github_icon = """
-    <style>
-    .stAppDeployButton {
-        display: none !important;
-    }
-    #MainMenu {
-        visibility: hidden;
-    }
-    footer {
-        visibility: hidden;
-    }
-    header {
-        visibility: hidden;
-    }
-    </style>
-"""
-st.markdown(hide_github_icon, unsafe_allow_html=True)
+# hide_github_icon = """
+#     <style>
+#     .stAppDeployButton {
+#         display: none !important;
+#     }
+#     #MainMenu {
+#         visibility: hidden;
+#     }
+#     footer {
+#         visibility: hidden;
+#     }
+#     header {
+#         visibility: hidden;
+#     }
+#     </style>
+# """
+#st.markdown(hide_github_icon, unsafe_allow_html=True)
 
 # =========================
 # CSS PARA FOTO REDONDA NO SIDEBAR
