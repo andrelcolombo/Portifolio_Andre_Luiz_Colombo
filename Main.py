@@ -235,6 +235,20 @@ if menu == "🏠 Sobre mim":
         """, unsafe_allow_html=True)
 
     st.divider()
+    
+    # =========================
+    # POSICIONAMENTO
+    # =========================
+
+    st.header("📌 Objetivo Profissional")
+
+    st.write("""
+    Evoluir na área de Engenharia de Dados e Arquitetura de Dados, 
+    atuando na construção de soluções escaláveis, modernas e orientadas a dados, 
+    com forte impacto no negócio e suporte à tomada de decisão estratégica.
+    """)
+
+    st.divider()
 
     # =========================
     # LINHA DO TEMPO (EXPERIÊNCIA PROFISSIONAL)
@@ -266,10 +280,11 @@ if menu == "🏠 Sobre mim":
         "Engenheiro de Dados", 
         "Bradesco Seguros", 
         [
-            "Construção e manutenção de pipelines de dados utilizando Python e SQL",
-            "Tratamento e transformação de dados corporativos para análises estratégicas",
-            "Desenvolvimento de dashboards executivos em Power BI e modelagem de indicadores",
-            "Apoio direto às áreas de negócio na interpretação de dados estratégicos"
+            "Projeto e implementação de estruturas de Data Lake e Data Warehouse, organizando dados de múltiplas fontes corporativas",
+            "Atuação em parceria com cientistas de dados na estruturação e organização de dados para projetos de ciência de dados e IA",
+            "Construção e manutenção de pipelines de dados automatizados utilizando Python e SQL, garantindo integridade entre sistemas corporativos",
+            "Documentação de processos e fluxos de dados, garantindo rastreabilidade, continuidade do conhecimento e apoio à governança da área",
+            "Desenvolvimento de dashboards executivos em Power BI e modelagem de indicadores, com apoio consultivo direto às áreas de negócio"
         ]
     )
 
@@ -278,21 +293,24 @@ if menu == "🏠 Sobre mim":
         "Analista de Dados", 
         "Netsupport", 
         [
-            "Criação de relatórios e dashboards operacionais para acompanhamento de KPIs",
-            "Automação de rotinas utilizando Python e SQL",
-            "Integração de dados provenientes de múltiplas fontes corporativas"
+            "Desenvolvimento e estruturação de Data Warehouse, consolidando dados de múltiplas fontes corporativas em uma base unificada",
+            "Processamento de grandes volumes de dados utilizando Apache Spark em ambiente Docker, otimizando performance e escalabilidade",
+            "Condução da migração de dados de plataforma legado para nova plataforma e sistema de CRM, garantindo integridade e consistência das informações",
+            "Desenvolvimento de scripts em Python e SQL para automação de rotinas de extração e tratamento de dados",
+            "Criação de dashboards e relatórios dinâmicos no Looker Studio para acompanhamento de KPIs"
         ]
     )
 
     timeline_item(
         "06/2023 - 06/2024", 
-        "Analista de Dados e Automação", 
+        "Engenheiro de Dados", 
         "Itaú Unibanco", 
         [
-            "Análise e manipulação de dados em bases relacionais com consultas SQL avançadas",
-            "Utilização de serviços AWS (S3, EC2, RDS e Lambda) para soluções escaláveis",
-            "Desenvolvimento de automações para processos internos e relatórios",
-            "Entrega de incrementos de software funcionais seguindo a metodologia ágil (Scrum)"
+            "Desenvolvimento e manutenção de soluções escaláveis em arquitetura de nuvem AWS (S3, EC2, RDS), com foco em processamento serverless via AWS Lambda",
+            "Análises avançadas em bases de dados relacionais utilizando SQL complexo, garantindo integridade, segurança e qualidade da informação",
+            "Desenvolvimento de scripts em C#, Python e SQL para automação de processos internos e geração de relatórios técnicos",
+            "Aprendizado e aplicação de .NET para integração com o time de engenharia, contribuindo com soluções de dados dentro do ecossistema da plataforma",
+            "Entrega de incrementos de software seguindo metodologia Scrum, com controle de versão via Git/GitHub"
         ]
     )
 
@@ -301,9 +319,11 @@ if menu == "🏠 Sobre mim":
         "Analista de Business Intelligence - Corretora", 
         "Itaú Unibanco", 
         [
-            "Análise de dados operacionais e geração de indicadores de performance",
-            "Criação de dashboards em Excel e Power BI para visualização de resultados",
-            "Desenvolvimento de automações de relatórios utilizando VBA"
+            "Desenvolvimento de Data Warehouse consolidando dados de múltiplas bases, incluindo áreas terceiras, informações públicas e dados da B3",
+            "Criação de dashboards dinâmicos em Power BI e Excel, transformando dados operacionais brutos em indicadores estratégicos (KPIs)",
+            "Implementação de automações em VBA e Python, reduzindo tempo de processamento e eliminando erros operacionais",
+            "Análise crítica de grandes volumes de dados da corretora, identificando padrões e gargalos nos processos de liquidação e custódia",
+            "Estruturação de dados e desenvolvimento de relatórios para o projeto de Corretagem Zero, iniciativa estratégica que tornou o Itaú mais competitivo no mercado"
         ]
     )
 
@@ -312,12 +332,61 @@ if menu == "🏠 Sobre mim":
         "Estagiário de Engenharia/TI", 
         "Itaú Unibanco", 
         [
-            "Suporte técnico e apoio no desenvolvimento de soluções de dados",
-            "Início da trajetória em análise de processos e automação dentro do setor bancário"
+            "Apoio no mapeamento e análise de processos produtivos, aplicando metodologias de engenharia para identificar oportunidades de otimização e redução de desperdícios",
+            "Elaboração de planilhas de controle e relatórios de KPIs em Excel avançado, com coleta e tratamento inicial de dados",
+            "Auxílio no planejamento e controle de atividades da área, colaborando na organização de cronogramas e fluxos de trabalho",
+            "Participação em projetos de melhoria contínua, aplicando visão lógica e analítica da formação em Engenharia de Produção",
+            "Primeiro contato com SQL Server, Python e VBA, dando início à trajetória técnica em dados"
         ]
     )
 
     st.divider()
+    
+    # =========================
+    # PROJETOS EM DESTAQUE
+    # =========================
+
+    st.header("💡 Projetos em Destaque")
+
+    st.caption("Iniciativas estratégicas onde atuei na estruturação de dados e entrega de valor para o negócio.")
+
+    estilo_box_projeto = "background-color: #262730; padding: 20px; border-radius: 10px; border-left: 5px solid #FF4B4B; margin-bottom: 20px;"
+
+    st.markdown(f"""
+    <div style="{estilo_box_projeto}">
+        <h4 style="margin: 0;">💰 Projeto Corretagem Zero - Itaú Unibanco</h4>
+        <p style="font-size: 0.9rem; color: #FAFAFA; margin-top: 10px;">
+            Estruturei a base de dados e desenvolvi os relatórios analíticos que sustentaram o lançamento da 
+            <b>corretagem zero</b>, iniciativa estratégica que eliminou o custo de corretagem para os clientes 
+            e tornou o Itaú mais competitivo no mercado.
+        </p>
+    </div>
+
+    <div style="{estilo_box_projeto}">
+        <h4 style="margin: 0;">🤖 Chatbot com LLM para Consumo de Dados - Bradesco Seguros</h4>
+        <p style="font-size: 0.9rem; color: #FAFAFA; margin-top: 10px;">
+            Atuei em parceria com cientistas de dados na criação de um chatbot baseado em <b>LLM</b> 
+            (similar a um ChatGPT/Claude interno), que se conectava à base de dados da empresa para 
+            responder perguntas em linguagem natural. A solução permitia que analistas menos técnicos 
+            consultassem informações diretamente, sem depender de conhecimento em SQL. Fui responsável 
+            pela estruturação e organização da camada de dados utilizada pelo modelo.
+        </p>
+    </div>
+
+    <div style="{estilo_box_projeto}">
+        <h4 style="margin: 0;">⚙️ Infraestrutura de Power BI (Idealização e Implementação) - Bradesco Seguros</h4>
+        <p style="font-size: 0.9rem; color: #FAFAFA; margin-top: 10px;">
+            Idealizei e implementei do zero a infraestrutura de Power BI da área, 
+            desde a configuração do ambiente em nuvem até a definição dos processos de governança. Para 
+            viabilizar a solução, lidei com toda a burocracia envolvida e articulei diretamente com times 
+            internos e externos, garantindo a implementação completa. Atuei como 
+            responsável único pela solução em todas as etapas, da concepção à manutenção contínua.
+        </p>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.divider()
+    
     # =========================
     # STACK
     # =========================
@@ -369,20 +438,9 @@ if menu == "🏠 Sobre mim":
 
 
     st.divider()
+    
 
-    # =========================
-    # POSICIONAMENTO
-    # =========================
 
-    st.header("📌 Objetivo Profissional")
-
-    st.write("""
-    Evoluir na área de Engenharia de Dados e Arquitetura de Dados, 
-    atuando na construção de soluções escaláveis, modernas e orientadas a dados, 
-    com forte impacto no negócio e suporte à tomada de decisão estratégica.
-    """)
-
-    st.divider()
     # =========================
     # FORMAÇÃO
     # =========================
@@ -398,9 +456,13 @@ if menu == "🏠 Sobre mim":
 
     🎓 Formação Profissional em Análise de Dados  
     Data Science Academy  
-             
+
     🎓 Formação Profissional em Ciência de Dados  
     Data Science Academy  
+
+    🎓 Formação Profissional em Engenharia de Dados (Cursando)  
+    Data Science Academy  
+
     """)
 
     st.divider()
@@ -428,7 +490,7 @@ if menu == "🏠 Sobre mim":
         """)
 
     with col_hobbies:
-        # Um pequeno card visual com ícones das suas paixões
+        # Um pequeno card visual com ícones 
         with st.container(border=True):
             st.markdown("### My Gear & Passions")
             st.write("🏎️ Motorsports")
@@ -483,6 +545,7 @@ elif menu == "ℹ️ Informações":
         st.markdown("""
         - **Formação Profissional - Cientista de Dados 4.0** - *Data Science Academy* 
         - **Formação Profissional - Analista de Dados 4.0** - *Data Science Academy*
+        - **Formação Profissional - Engenheiro de Dados 4.0 (CURSANDO)** - *Data Science Academy*
         """)
 
         col_badge1, col_badge2 = st.columns(2, gap="large")
