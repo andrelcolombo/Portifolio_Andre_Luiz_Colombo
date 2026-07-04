@@ -587,6 +587,7 @@ elif menu == "ℹ️ Informações":
         - **Fundamentos de Engenharia de Dados**
         - **Databricks Get Started Days** (Data Engineering + SQL Analytics)
         - **Cloud Computing & Data Science** (Amazon SageMaker e Microsoft Fabric)
+        - **Infraestrutura Como Código com Terraform, AWS, Azure e Databricks**
         """)
 
     with st.expander("📊 Business Intelligence & Analytics", expanded=False):
