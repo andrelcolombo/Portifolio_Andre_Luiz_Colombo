@@ -3,6 +3,7 @@
 # =========================
 
 import streamlit as st
+import streamlit.components.v1 as components
 import requests
 import base64
 import os
@@ -161,7 +162,53 @@ with st.sidebar:
                 )
         except FileNotFoundError:
             st.caption("⚠️ Arquivo do CV não encontrado")
+            
+# =========================
+# SCROLL TO TOP AO TROCAR DE ABA
+# =========================
 
+if "menu_anterior" not in st.session_state:
+    st.session_state.menu_anterior = menu
+
+if st.session_state.menu_anterior != menu:
+    st.session_state.menu_anterior = menu
+    components.html(
+        f"""
+        <!-- menu atual: {menu} -->
+        <script>
+            function irParaTopo() {{
+                var doc = window.parent.document;
+                var win = window.parent;
+
+                win.scrollTo(0, 0);
+                doc.documentElement.scrollTop = 0;
+                doc.body.scrollTop = 0;
+
+                var seletores = [
+                    '[data-testid="stAppViewContainer"]',
+                    '[data-testid="stMain"]',
+                    '[data-testid="stAppViewBlockContainer"]',
+                    'section.main',
+                    '.main'
+                ];
+                seletores.forEach(function(sel) {{
+                    var el = doc.querySelector(sel);
+                    if (el) {{
+                        el.scrollTop = 0;
+                        console.log("Container encontrado: " + sel + " | scrollTop após reset: " + el.scrollTop);
+                    }}
+                }});
+            }}
+            var tentativas = [0, 100, 250, 400, 600, 900, 1200];
+            tentativas.forEach(function(delay) {{
+                setTimeout(irParaTopo, delay);
+            }});
+        </script>
+        """,
+        height=0,
+    )
+    
+    
 if menu == "🏠 Sobre mim":
 
     # =========================
@@ -397,7 +444,7 @@ if menu == "🏠 Sobre mim":
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.subheader("🧠 Data Engineering")
+        st.subheader("⚙️ Data Engineering")
         st.markdown("""
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" width="30"/><span style="margin-left: 10px;"><b>Python:</b> ETL e Automação</span></div>
@@ -408,7 +455,7 @@ if menu == "🏠 Sobre mim":
                 <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/googlebigquery" width="30"/><span style="margin-left: 10px;"><b>BigQuery:</b> Data Warehousing</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/databricks" width="30"/><span style="margin-left: 10px;"><b>Databricks:</b>Lakehouse e Governança</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/apachespark" width="30"/><span style="margin-left: 10px;"><b>Spark:</b>Processamento Distribuído</span></div>
-
+                <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/airbyte" width="30"/><span style="margin-left: 10px;"><b>Airbyte:</b> Ingestão e Integração de Dados</span></div>
             </div>
         """, unsafe_allow_html=True)
 
@@ -417,6 +464,7 @@ if menu == "🏠 Sobre mim":
         st.markdown("""
             <div style="display: flex; flex-direction: column; gap: 10px;">
                 <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="30"/><span style="margin-left: 10px;"><b>AWS:</b> S3, EC2 e Lambda</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" width="30"/><span style="margin-left: 10px;"><b>Azure:</b> AZ-900 Certified</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" width="30"/><span style="margin-left: 10px;"><b>Terraform:</b> Infraestrutura como Código</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="30"/><span style="margin-left: 10px;"><b>Docker:</b> Containerização</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" width="30"/><span style="margin-left: 10px;"><b>Linux:</b> Adm. de Servidores</span></div>
@@ -453,6 +501,9 @@ if menu == "🏠 Sobre mim":
 
     🎓 MBA em Data Science & Advanced Analytics  
     Impacta Tecnologia  
+    
+    🎓 Pós-Graduação em Engenharia de Dados (Cursando)  
+    Data Science Academy      
 
     🎓 Formação Profissional em Análise de Dados  
     Data Science Academy  
@@ -526,6 +577,7 @@ elif menu == "ℹ️ Informações":
         st.markdown("""
         - **Bacharelado em Engenharia de Produção** - *Universidade São Judas Tadeu*
         - **MBA em Data Science & Advanced Analytics** - *Impacta Tecnologia*
+        - **Pós-Graduação em Engenharia de Dados** - *Data Science Academy* (Cursando)   
         """)
     
 
@@ -545,10 +597,10 @@ elif menu == "ℹ️ Informações":
         st.markdown("""
         - **Formação Profissional - Cientista de Dados 4.0** - *Data Science Academy* 
         - **Formação Profissional - Analista de Dados 4.0** - *Data Science Academy*
-        - **Formação Profissional - Engenheiro de Dados 4.0 (CURSANDO)** - *Data Science Academy*
+        - **Formação Profissional - Engenheiro de Dados 4.0** - *Data Science Academy* (CURSANDO)
         """)
 
-        col_badge1, col_badge2 = st.columns(2, gap="large")
+        # col_badge1, col_badge2 = st.columns(2, gap="large")
 
         vazia_esq, col_badge1, col_badge2, vazia_dir = st.columns([1, 2, 2, 1])
 
@@ -578,6 +630,8 @@ elif menu == "ℹ️ Informações":
         else:
             col_badge2.warning("Arquivo FADA (.png) não encontrado.")
 
+    caminho_badge_az900 = os.path.join(BASE_DIR, "imagens", "microsoft-certified-fundamentals-badge.svg")
+    
     with st.expander("⚙️ Engenharia de Dados, Cloud & Automação", expanded=False):
         st.markdown("""
         - **IA Generativa e Agentes de IA Para Fluxos de Automação com Langflow e n8n**
@@ -588,7 +642,22 @@ elif menu == "ℹ️ Informações":
         - **Databricks Get Started Days** (Data Engineering + SQL Analytics)
         - **Cloud Computing & Data Science** (Amazon SageMaker e Microsoft Fabric)
         - **Infraestrutura Como Código com Terraform, AWS, Azure e Databricks**
+        - **Certificação AZ-900: Microsoft Azure Fundamentals**
         """)
+
+        if os.path.exists(caminho_badge_az900):
+            with open(caminho_badge_az900, "r", encoding="utf-8") as f:
+                svg_content = f.read()
+            svg_base64 = base64.b64encode(svg_content.encode("utf-8")).decode("utf-8")
+
+            vazia_esq, col_badge, vazia_dir = st.columns([1, 2, 1])
+            with col_badge:
+                st.markdown(f"""
+                    <div style="text-align: center;">
+                        <img src="data:image/svg+xml;base64,{svg_base64}" width="50%" style="border-radius: 10px; border: 1px solid #31333F;">
+                        <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Azure Fundamentals (AZ-900)</p>
+                    </div>
+                """, unsafe_allow_html=True)
 
     with st.expander("📊 Business Intelligence & Analytics", expanded=False):
         st.markdown("""
@@ -603,7 +672,7 @@ elif menu == "ℹ️ Informações":
         - **Tableau: Visualização de Dados**
         """)
 
-    with st.expander("🧠 Data Science, Estatística & ML", expanded=False):
+    with st.expander("📈 Data Science, Estatística & ML", expanded=False):
         st.markdown("""
         - **Business Analytics & Machine Learning para Projetos**
         - **Matemática e Estatística Aplicada** (Data Science, ML e IA)
@@ -657,6 +726,7 @@ elif menu == "ℹ️ Informações":
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" style="margin: 10px;"/>
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="40" style="margin: 10px;"/>
         <img src="https://cdn.simpleicons.org/databricks" width="40" style="margin: 10px;"/>
+        <img src="https://cdn.simpleicons.org/airbyte" width="40" style="margin: 10px;"/>
         <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Apache_Spark_logo.svg" width="40" style="margin: 10px;"/>
         <img src="https://cdn.simpleicons.org/googlebigquery" width="40" style="margin: 10px;"/>
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/terraform/terraform-original.svg" width="40" style="margin: 10px;"/>
@@ -806,7 +876,7 @@ elif menu == "☎️ Contato":
                 <span style="color: #888; font-size: 0.85rem; display: block; width: 100%; margin-top: 5px;">Rede Profissional</span>
             </div>
         """, unsafe_allow_html=True)
-        st.link_button("Ver Perfil", "https://www.linkedin.com/in/andr%C3%A9-luiz-colombo-729755111/", use_container_width=True)
+        st.link_button("Ver Perfil", "https://www.linkedin.com/in/andre-luiz-colombo/", use_container_width=True)
 
     with col3:
         st.markdown(f"""
@@ -842,7 +912,7 @@ elif menu == "☎️ Contato":
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" width="20">
-                    <span><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/andr%C3%A9-luiz-colombo-729755111/" style="color: #FF4B4B; text-decoration: none;">linkedin.com/in/andre-luiz-colombo</a></span>
+                    <span><b>LinkedIn:</b> <a href="https://www.linkedin.com/in/andre-luiz-colombo/" style="color: #FF4B4B; text-decoration: none;">linkedin.com/in/andre-luiz-colombo</a></span>
                 </div>
                 <div style="display: flex; align-items: center; gap: 12px;">
                     <img src="https://cdn.simpleicons.org/whatsapp/25D366" width="20">
