@@ -7,6 +7,8 @@ import streamlit.components.v1 as components
 import requests
 import base64
 import os
+import io
+from PIL import Image
 # =========================
 # CONFIG DA PÁGINA
 # =========================
@@ -687,6 +689,8 @@ elif menu == "ℹ️ Informações":
     # =========================
     # GALERIA DE CERTIFICADOS 
     # =========================
+
+
     st.subheader("📜 Galeria de Certificados")
     st.caption("Passe o mouse por cima do painel para pausar a rolagem. Clique em um certificado para expandir.")
 
@@ -696,7 +700,7 @@ elif menu == "ℹ️ Informações":
         os.makedirs(PASTA_CERTIFICADOS, exist_ok=True)
 
     @st.cache_data(ttl=3600)
-    def carregar_capas_certificados(diretorio):
+    def carregar_capas_certificados(diretorio, largura_max=900, qualidade=70):
         lista_certificados = []
 
         if os.path.exists(diretorio):
@@ -706,10 +710,20 @@ elif menu == "ℹ️ Informações":
             for arquivo in arquivos:
                 caminho_completo = os.path.join(diretorio, arquivo)
                 try:
-                    with open(caminho_completo, "rb") as f:
-                        img_bytes = f.read()
-                        img_b64 = base64.b64encode(img_bytes).decode("utf-8")
-                        lista_certificados.append(img_b64)
+                    img = Image.open(caminho_completo)
+
+                    if img.mode != "RGB":
+                        img = img.convert("RGB")
+
+                    if img.width > largura_max:
+                        proporcao = largura_max / img.width
+                        nova_altura = int(img.height * proporcao)
+                        img = img.resize((largura_max, nova_altura), Image.LANCZOS)
+
+                    buffer = io.BytesIO()
+                    img.save(buffer, format="JPEG", quality=qualidade, optimize=True)
+                    img_b64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+                    lista_certificados.append(img_b64)
                 except Exception:
                     continue
 
@@ -812,13 +826,11 @@ elif menu == "ℹ️ Informações":
             function abrirModalPai(src) {{
                 var doc = window.parent.document;
 
-                // Evita duplicar o modal se já existir um aberto
                 if (doc.getElementById('cert-modal-overlay')) {{
                     doc.getElementById('cert-modal-img').src = src;
                     return;
                 }}
 
-                // Injeta o CSS no <head> do documento pai (uma única vez)
                 if (!doc.getElementById('cert-modal-style')) {{
                     var style = doc.createElement('style');
                     style.id = 'cert-modal-style';
@@ -867,7 +879,6 @@ elif menu == "ℹ️ Informações":
                     doc.head.appendChild(style);
                 }}
 
-                // Cria o overlay no body do documento pai
                 var overlay = doc.createElement('div');
                 overlay.id = 'cert-modal-overlay';
                 overlay.onclick = function() {{ fecharModalPai(); }};
