@@ -729,7 +729,8 @@ elif menu == "ℹ️ Informações":
 
         return lista_certificados
 
-    certificados = carregar_capas_certificados(PASTA_CERTIFICADOS)
+    with st.spinner("📜 Carregando certificados..."):
+        certificados = carregar_capas_certificados(PASTA_CERTIFICADOS)
 
     if certificados:
         items_html = ""
