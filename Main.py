@@ -635,14 +635,15 @@ elif menu == "ℹ️ Informações":
     with st.expander("⚙️ Engenharia de Dados, Cloud & Automação", expanded=False):
         st.markdown("""
         - **IA Generativa e Agentes de IA Para Fluxos de Automação com Langflow e n8n**
-        - **SQL Server Integration Services (SSIS) - ETL Avançado** 
+        - **SQL Server Integration Services (SSIS)** 
         - **Build Data Pipelines** (Lakeflow / Data Engineering)
         - **Pipelines de Dados com Google BigQuery**
         - **Fundamentos de Engenharia de Dados**
         - **Databricks Get Started Days** (Data Engineering + SQL Analytics)
         - **Cloud Computing & Data Science** (Amazon SageMaker e Microsoft Fabric)
         - **Infraestrutura Como Código com Terraform, AWS, Azure e Databricks**        
-        - **Modelagem, Implementação e Governança de Data Warehouses**
+        - **Modelagem, Implementação e Governança de Data Warehouses**        
+        - **Databricks: lakehouse, notebooks e consultas com IA generativa**
         - **Certificação AZ-900: Microsoft Azure Fundamentals**
         """)
 
@@ -682,7 +683,236 @@ elif menu == "ℹ️ Informações":
         """)
 
     st.divider()
+    
+    # =========================
+    # GALERIA DE CERTIFICADOS 
+    # =========================
+    st.subheader("📜 Galeria de Certificados")
+    st.caption("Passe o mouse por cima do painel para pausar a rolagem. Clique em um certificado para expandir.")
 
+    PASTA_CERTIFICADOS = os.path.join(BASE_DIR, "certificados")
+
+    if not os.path.exists(PASTA_CERTIFICADOS):
+        os.makedirs(PASTA_CERTIFICADOS, exist_ok=True)
+
+    @st.cache_data(ttl=3600)
+    def carregar_capas_certificados(diretorio):
+        lista_certificados = []
+
+        if os.path.exists(diretorio):
+            extensoes_validas = (".jpg", ".jpeg")
+            arquivos = [f for f in sorted(os.listdir(diretorio)) if f.lower().endswith(extensoes_validas)]
+
+            for arquivo in arquivos:
+                caminho_completo = os.path.join(diretorio, arquivo)
+                try:
+                    with open(caminho_completo, "rb") as f:
+                        img_bytes = f.read()
+                        img_b64 = base64.b64encode(img_bytes).decode("utf-8")
+                        lista_certificados.append(img_b64)
+                except Exception:
+                    continue
+
+        return lista_certificados
+
+    certificados = carregar_capas_certificados(PASTA_CERTIFICADOS)
+
+    if certificados:
+        items_html = ""
+        for img_b64 in certificados:
+            data_uri = f"data:image/jpeg;base64,{img_b64}"
+            items_html += f"""
+            <div class="cert-card">
+                <div class="cert-frame-wrapper">
+                    <img src="{data_uri}" class="cert-img" onclick="abrirModalPai('{data_uri}')" />
+                </div>
+            </div>
+            """
+
+        carrusel_horizontal_html = f"""
+        <style>
+            * {{
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }}
+            html, body {{
+                background-color: transparent;
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            }}
+            .horizontal-slider-container {{
+                width: 100%;
+                overflow: hidden;
+                position: relative;
+                background-color: #1e1e24;
+                border-radius: 12px;
+                border: 1px solid #31333F;
+                padding: 15px;
+                box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.5);
+            }}
+            .horizontal-slider-track {{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                gap: 20px;
+                width: max-content;
+                animation: scrollHorizontal 150s linear infinite;
+            }}
+            .horizontal-slider-container:hover .horizontal-slider-track {{
+                animation-play-state: paused;
+            }}
+            .cert-card {{
+                background-color: #262730;
+                border-radius: 10px;
+                padding: 10px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+                border-left: 4px solid #FF4B4B;
+                transition: border-color 0.2s ease;
+                flex-shrink: 0;
+                width: 380px;
+            }}
+            .cert-card:hover {{
+                border-left-color: #00D4B1;
+            }}
+            .cert-frame-wrapper {{
+                width: 100%;
+                aspect-ratio: 1.414 / 1;
+                border-radius: 6px;
+                overflow: hidden;
+                background-color: #0e1117;
+                border: 1px solid #31333F;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }}
+            .cert-img {{
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                cursor: zoom-in;
+                transition: opacity 0.15s ease;
+            }}
+            .cert-img:hover {{
+                opacity: 0.88;
+            }}
+            @keyframes scrollHorizontal {{
+                0% {{ transform: translateX(0%); }}
+                100% {{ transform: translateX(-50%); }}
+            }}
+        </style>
+
+        <div class="horizontal-slider-container">
+            <div class="horizontal-slider-track">
+                {items_html}
+                {items_html}
+            </div>
+        </div>
+
+        <script>
+            function abrirModalPai(src) {{
+                var doc = window.parent.document;
+
+                // Evita duplicar o modal se já existir um aberto
+                if (doc.getElementById('cert-modal-overlay')) {{
+                    doc.getElementById('cert-modal-img').src = src;
+                    return;
+                }}
+
+                // Injeta o CSS no <head> do documento pai (uma única vez)
+                if (!doc.getElementById('cert-modal-style')) {{
+                    var style = doc.createElement('style');
+                    style.id = 'cert-modal-style';
+                    style.innerHTML = `
+                        #cert-modal-overlay {{
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100vw;
+                            height: 100vh;
+                            background-color: rgba(0, 0, 0, 0.92);
+                            z-index: 999999;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            cursor: zoom-out;
+                            animation: certFadeIn 0.2s ease;
+                        }}
+                        @keyframes certFadeIn {{
+                            from {{ opacity: 0; }}
+                            to {{ opacity: 1; }}
+                        }}
+                        #cert-modal-img {{
+                            max-width: 90vw;
+                            max-height: 90vh;
+                            border-radius: 8px;
+                            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+                            border: 2px solid #FF4B4B;
+                            cursor: default;
+                        }}
+                        #cert-modal-close {{
+                            position: absolute;
+                            top: 20px;
+                            right: 32px;
+                            color: #FAFAFA;
+                            font-size: 2.4rem;
+                            font-weight: bold;
+                            cursor: pointer;
+                            line-height: 1;
+                            user-select: none;
+                        }}
+                        #cert-modal-close:hover {{
+                            color: #FF4B4B;
+                        }}
+                    `;
+                    doc.head.appendChild(style);
+                }}
+
+                // Cria o overlay no body do documento pai
+                var overlay = doc.createElement('div');
+                overlay.id = 'cert-modal-overlay';
+                overlay.onclick = function() {{ fecharModalPai(); }};
+
+                var closeBtn = doc.createElement('span');
+                closeBtn.id = 'cert-modal-close';
+                closeBtn.innerHTML = '&times;';
+                closeBtn.onclick = function(e) {{ e.stopPropagation(); fecharModalPai(); }};
+
+                var img = doc.createElement('img');
+                img.id = 'cert-modal-img';
+                img.src = src;
+                img.onclick = function(e) {{ e.stopPropagation(); }};
+
+                overlay.appendChild(closeBtn);
+                overlay.appendChild(img);
+                doc.body.appendChild(overlay);
+
+                doc.addEventListener('keydown', escFecharPai);
+            }}
+
+            function fecharModalPai() {{
+                var doc = window.parent.document;
+                var overlay = doc.getElementById('cert-modal-overlay');
+                if (overlay) {{
+                    overlay.remove();
+                }}
+                doc.removeEventListener('keydown', escFecharPai);
+            }}
+
+            function escFecharPai(e) {{
+                if (e.key === 'Escape') {{
+                    fecharModalPai();
+                }}
+            }}
+        </script>
+        """
+
+        components.html(carrusel_horizontal_html, height=310, scrolling=False)
+    else:
+        st.warning(f"⚠️ Nenhum arquivo `.jpg`/`.jpeg` foi encontrado no diretório: `{PASTA_CERTIFICADOS}`.")
+        st.info("Adicione os arquivos JPEG dos certificados na pasta `certificados`.")
+
+    st.divider()
+    
     # =========================
     # DIFERENCIAIS (VISUALMENTE FORTES)
     # =========================
