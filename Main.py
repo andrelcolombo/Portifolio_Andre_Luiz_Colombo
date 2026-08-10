@@ -641,7 +641,8 @@ elif menu == "ℹ️ Informações":
         - **Fundamentos de Engenharia de Dados**
         - **Databricks Get Started Days** (Data Engineering + SQL Analytics)
         - **Cloud Computing & Data Science** (Amazon SageMaker e Microsoft Fabric)
-        - **Infraestrutura Como Código com Terraform, AWS, Azure e Databricks**
+        - **Infraestrutura Como Código com Terraform, AWS, Azure e Databricks**        
+        - **Modelagem, Implementação e Governança de Data Warehouses**
         - **Certificação AZ-900: Microsoft Azure Fundamentals**
         """)
 
