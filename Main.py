@@ -458,7 +458,7 @@ if menu == "🏠 Sobre mim":
                 <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/databricks" width="30"/><span style="margin-left: 10px;"><b>Databricks:</b>Lakehouse e Governança</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/apachespark" width="30"/><span style="margin-left: 10px;"><b>Spark:</b>Processamento Distribuído</span></div>
                 <div style="display: flex; align-items: center;"><img src="https://cdn.simpleicons.org/airbyte" width="30"/><span style="margin-left: 10px;"><b>Airbyte:</b> Ingestão e Integração de Dados</span></div>
-                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/gilbarbara/logos/logos/dbt.svg" width="30"/><span style="margin-left: 10px;"><b>dbt:</b> Transformação e Modelagem de Dados</span></div>
+                <div style="display: flex; align-items: center;"><img src="https://cdn.jsdelivr.net/gh/gilbarbara/logos/logos/dbt.svg" width="50"/><span style="margin-left: 10px;"><b>dbt:</b> Transformação e Modelagem de Dados</span></div>
             </div>
         """, unsafe_allow_html=True)
 
