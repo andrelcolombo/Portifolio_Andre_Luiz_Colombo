@@ -323,9 +323,18 @@ if menu == "🏠 Sobre mim":
     # =========================
     # EXECUÇÃO DA TIMELINE 
     # =========================
+    
+    timeline_item(
+            "11/2024 - 09/2026", 
+            "Especialista em Engenharia de Dados", 
+            "CAIXA Pré-Pagos", 
+            [
+                "Cargo recém-assumido, escopo de atuação, projetos e atividades em fase de estruturação e integração. 🏗️" 
+            ]
+        )
 
     timeline_item(
-        "11/2024 - Atual", 
+        "11/2024 - 09/2026", 
         "Engenheiro de Dados", 
         "Bradesco Seguros", 
         [
