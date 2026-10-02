@@ -325,7 +325,7 @@ if menu == "🏠 Sobre mim":
     # =========================
     
     timeline_item(
-            "11/2024 - 09/2026", 
+            "09/2026 - Atual", 
             "Especialista em Engenharia de Dados", 
             "CAIXA Pré-Pagos", 
             [
@@ -657,6 +657,7 @@ elif menu == "ℹ️ Informações":
         - **Infraestrutura Como Código com Terraform, AWS, Azure e Databricks**        
         - **Modelagem, Implementação e Governança de Data Warehouses**        
         - **Databricks: lakehouse, notebooks e consultas com IA generativa**
+        - **Armazenamento e Gestão de Dados com Data Lake e Data Lakehouse**
         - **Certificação AZ-900: Microsoft Azure Fundamentals**
         """)
 
