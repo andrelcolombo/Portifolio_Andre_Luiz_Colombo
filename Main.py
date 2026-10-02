@@ -981,8 +981,9 @@ elif menu == "ℹ️ Informações":
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" width="40" style="margin: 10px;"/>
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" width="40" style="margin: 10px;"/>
         <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" width="40" style="margin: 10px;"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" width="40"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" width="40" style="margin: 10px;/>
         <img src="https://cdn.simpleicons.org/databricks" width="40" style="margin: 10px;"/>
+        <img src="https://delta.io/_astro/delta-lake-logo.Bqi7mgVq_Z1nYcJT.webp" width="40" style="margin: 10px;"/>
         <img src="https://cdn.simpleicons.org/airbyte" width="40" style="margin: 10px;"/>
         <img src="https://cdn.jsdelivr.net/gh/gilbarbara/logos/logos/dbt.svg" width="70"/>
         <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Apache_Spark_logo.svg" width="70" style="margin: 10px;"/>
